@@ -1,6 +1,7 @@
 .panel {
     display: flex;
-    max-width: 700px;
+    flex-wrap: wrap;
+    width: 100%;
     align-items: end;
     gap: 10px
 }
@@ -8,7 +9,7 @@
 .input {
     display: flex;
     flex-direction: column;
-    max-width: 284px;
+    width: 284px;
 }
 
 .selects {
@@ -20,3 +21,9 @@
 .input_type_raiting {
     max-width: 138px;
 }
+
+/* @media screen and (max-width: 1140px) {
+    .panel {
+        flex-wrap: wrap
+    }
+  } */

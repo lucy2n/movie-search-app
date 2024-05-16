@@ -5,8 +5,8 @@ import side from '../../images/side.svg'
 
 export default function SideBar () {
     return(
-        <div style={{width: '280px', height: '100vh', backgroundColor: '#F2EBF9'}}>
-            <Group style={{display: 'flex', gap: 0}}>
+        <div className={style.main}>
+            <div className={style.text}>
                 <Image
                     component={NextImage}
                     h={32}
@@ -16,7 +16,7 @@ export default function SideBar () {
                     src={side}
                 />
                 <Title order={3} style={{color: '#9854F6'}}>ArrowFlicks</Title>
-            </Group>
+            </div>
             <SegmentedControl 
                 className={`${style.innerLabel} ${style.label}`}
                 color="#E5D5FA"

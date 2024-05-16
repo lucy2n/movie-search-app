@@ -1,5 +1,12 @@
 .main {
-    max-width: 800px;
+    max-width: 482px;
     display: flex;
-    
+}
+
+.container {
+    width: 398px;
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    margin: 20px;
 }
