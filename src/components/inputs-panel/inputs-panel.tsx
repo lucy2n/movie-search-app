@@ -1,29 +1,7 @@
-import { useState } from 'react';
-import { Combobox, Select, Title, useCombobox, Button, MultiSelect } from '@mantine/core';
+import { Select, Button, MultiSelect } from '@mantine/core';
 import style from './inputs-panel.module.css'
 
-const groceries = [
-  '🍎 Apples',
-  '🍌 Bananas',
-  '🥦 Broccoli',
-  '🥕 Carrots',
-  '🍫 Chocolate',
-  '🍇 Grapes',
-];
-
 export function InputsPanel() {
-  const combobox = useCombobox({
-    onDropdownClose: () => combobox.resetSelectedOption(),
-  });
-
-  const [value, setValue] = useState<string | null>(null);
-
-  const options = groceries.map((item) => (
-    <Combobox.Option value={item} key={item}>
-      {item}
-    </Combobox.Option>
-  ));
-
   return (
     <div className={style.panel}>
             <MultiSelect
