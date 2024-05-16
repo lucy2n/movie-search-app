@@ -1,4 +1,4 @@
-import { Paper, Image, Text, Badge, Button, Group, Container, Rating } from '@mantine/core';
+import { Paper, Image, Text, Group, Container, Rating } from '@mantine/core';
 import style from './movie-card.module.css'
 import NextImage from 'next/image';
 import no_bg from '../../images/no-bg.png'

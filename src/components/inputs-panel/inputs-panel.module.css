@@ -1,6 +1,6 @@
 .panel {
     display: flex;
-    max-width: 1440px;
+    max-width: 700px;
     align-items: end;
     gap: 10px
 }
