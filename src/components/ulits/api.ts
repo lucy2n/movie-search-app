@@ -1,3 +1,5 @@
+const base_url = 'https://api.themoviedb.org/3/discover/movie'
+
 const options = {
 	method: 'GET',
 	headers: {
@@ -11,13 +13,16 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 };
 
 export const getMovies = async () => {
-  const res = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
+  	const res = await fetch(`${base_url}?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`, options)
 	return checkResponse(res);
 };
 
-// export const getProfiles = async (): Promise<IVolunteers> => {
-//   const res = await fetch(`${BASE_URL}/volunteer/list?pageSize=-14379090`, {
-// 		method: "GET",
-// 	});
-// 	return checkResponse<IVolunteers>(res);
-// };
+export const getFilmInformation = async (id: number | string) => {
+	const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+	return checkResponse(res);
+}
+
+export const getGenres = async () => {
+	const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
+	return checkResponse(res);
+}

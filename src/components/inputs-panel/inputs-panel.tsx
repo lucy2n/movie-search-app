@@ -1,16 +1,11 @@
 import { Select, Button, MultiSelect } from '@mantine/core';
 import style from './inputs-panel.module.css'
+import GenresInput from '../genres-input/genres-input';
 
 export function InputsPanel() {
   return (
-    <div className={style.panel}>
-            <MultiSelect
-                radius='md'
-                className={style.input}
-                label="Genres"
-                placeholder='Select genre'
-                data={['React', 'Angular', 'Vue', 'Svelte']}
-            />
+    <form className={style.panel}>
+            <GenresInput />
             <MultiSelect
                 radius='md'
                 className={style.input}
@@ -35,6 +30,6 @@ export function InputsPanel() {
             />
             </div>
         <Button variant="transparent" color="gray">Reset filters</Button>
-    </div>
+    </form>
     )
 }

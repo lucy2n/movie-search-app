@@ -1,7 +1,8 @@
-import { Container, Group, Title, SegmentedControl, Image } from "@mantine/core";
+import { Title, Image } from "@mantine/core";
 import style from './side-bar.module.css';
 import NextImage from 'next/image';
 import side from '../../images/side.svg'
+import MenuTabs from "../tabs/tabs";
 
 export default function SideBar () {
     return(
@@ -17,13 +18,7 @@ export default function SideBar () {
                 />
                 <Title order={3} style={{color: '#9854F6'}}>ArrowFlicks</Title>
             </div>
-            <SegmentedControl 
-                className={`${style.label} ${style.root} ${style.indicator}`}
-                color="#E5D5FA"
-                data={['Movies', 'Rated movies']} 
-                orientation="vertical"
-            />
-
+            <MenuTabs />
         </div>
     )
 }

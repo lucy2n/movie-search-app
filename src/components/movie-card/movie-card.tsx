@@ -1,10 +1,22 @@
 import { Paper, Image, Text, Group, Container, Rating } from '@mantine/core';
 import style from './movie-card.module.css'
 import no_bg from '../../images/no-bg.png'
+import { useState } from 'react';
+import { getFilmInformation } from '../ulits/api';
 
 export default function MovieCard(film) {
+
+    const [filmId, setFilmId] = useState('');
+
+    async function handleId () {
+        setFilmId(film.film.id)
+        console.log(filmId)
+        // getFilmInformation(filmId)
+        // .then(res => console.log(res))
+    }
+
   return (
-    <Paper className={style.main} shadow="xs" p="l" radius="20px">
+    <Paper onClick={handleId} className={style.main} shadow="xs" p="l" radius="20px">
         <div className={style.container}>
             <Image
                 height={170}

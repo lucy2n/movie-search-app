@@ -3,15 +3,40 @@
 import '@mantine/core/styles.css';
 
 import type { AppProps } from 'next/app';
-import { createTheme, MantineProvider } from '@mantine/core';
+import { MantineProvider, MantineColorsTuple, MantineThemeOverride } from '@mantine/core';
+import Head from "next/head";
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
-});
+const myColor: MantineColorsTuple = [
+  '#f6eeff',
+  '#e7daf7',
+  '#cab1ea',
+  '#ad86dd',
+  '#9562d2',
+  '#854bcb',
+  '#7d3ec9',
+  '#6b31b2',
+  '#5f2aa0',
+  '#52228d'
+];
+
+const theme: MantineThemeOverride = {
+  colors: {
+    myColor,
+  },
+  primaryColor: 'myColor',
+};
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider theme={theme}>
+       <Head>
+        <title>Mantine Template</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+        <link rel="shortcut icon" href="/favicon.svg" />
+      </Head>
       <Component {...pageProps} />
     </MantineProvider>
   );
