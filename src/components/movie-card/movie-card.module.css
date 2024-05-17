@@ -1,10 +1,10 @@
 .main {
-    max-width: 482px;
+    width: 482px;
     display: flex;
 }
 
 .container {
-    width: 398px;
+    width: 432px;
     display: flex;
     align-items: start;
     gap: 20px;

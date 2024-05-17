@@ -11,8 +11,6 @@ export default function MovieCard(film) {
     async function handleId () {
         setFilmId(film.film.id)
         console.log(filmId)
-        // getFilmInformation(filmId)
-        // .then(res => console.log(res))
     }
 
   return (

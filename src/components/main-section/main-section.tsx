@@ -13,6 +13,6 @@ export default function MainSection () {
                 <SortBy />
             </div>
             <MovieList />
-    </div>
+        </div>
     )
 }
