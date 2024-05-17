@@ -4,6 +4,7 @@ import style from './sort-by.module.css';
 export default function SortBy () {
     return (
         <Select
+            radius='md'
             className={style.input}
             label="Sort by"
             placeholder="Form"

@@ -18,11 +18,11 @@ export default function SideBar () {
                 <Title order={3} style={{color: '#9854F6'}}>ArrowFlicks</Title>
             </div>
             <SegmentedControl 
-                className={`${style.innerLabel} ${style.label}`}
+                className={`${style.label} ${style.root} ${style.indicator}`}
                 color="#E5D5FA"
                 data={['Movies', 'Rated movies']} 
                 orientation="vertical"
-                />
+            />
 
         </div>
     )
