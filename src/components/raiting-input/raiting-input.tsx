@@ -4,13 +4,9 @@ import { useState } from "react";
 
 export default function RaitingInput () {
 
-    const [raiting, setRaiting] = useState<string[]>(Array.from({length: 10}, (_, i) => i + 1 + ''));
+    const raiting = Array.from({length: 10}, (_, i) => i + 1 + '');
     const [bottomValue, setBottomValue] = useState<string>('');
     const [topVallue, setTopValue] = useState<string>('')
-
-    function some() {
-
-    }
 
     return (
         <div className={style.selects}>

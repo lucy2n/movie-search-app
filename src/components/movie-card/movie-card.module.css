@@ -1,12 +1,55 @@
 .main {
-    width: 482px;
     display: flex;
 }
 
+.main_small {
+    width: 482px;
+}
+
+.main_big {
+    width: 800px;
+}
+
+
 .container {
-    width: 432px;
     display: flex;
     align-items: start;
+    margin: 20px;
+}
+
+.container_big {
+    width: 760px;
+    gap: 40px;
+    margin: 20px;
+}
+
+.container_small {
+    width: 432px;
     gap: 20px;
     margin: 20px;
 }
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.info_big {
+    width: 442px;
+    gap: 120px
+}
+
+.info_small {
+    width: 263px;
+    gap: 50px
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
