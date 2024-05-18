@@ -1,5 +1,6 @@
 import { Select } from "@mantine/core"
 import style from './sort-by.module.css';
+import { Sort } from "./constants";
 
 export default function SortBy () {
     return (
@@ -8,8 +9,8 @@ export default function SortBy () {
             className={style.input}
             label="Sort by"
             placeholder="Form"
-            defaultValue="Most popular"
-            data={['React', 'Angular', 'Vue', 'Svelte']}
+            defaultValue={Sort.mostPopular}
+            data={[Sort.mostPopular, Sort.leastPopular, Sort.mostRated, Sort.leastRated, Sort.mostVoted, Sort.leastVoted]}
         />
     )
 }
