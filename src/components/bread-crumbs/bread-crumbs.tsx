@@ -1,15 +1,16 @@
 import { Breadcrumbs, Anchor } from '@mantine/core';
 
-const items = [
-  { title: 'Mantine', href: '#' },
-  { title: 'Mantine hooks', href: '#' },
-].map((item, index) => (
-  <Anchor href={item.href} key={index}>
-    {item.title}
-  </Anchor>
-));
+export default function MovieBreadCrumbs({ name }: string) {
+  
+  const items = [
+    { title: 'Movies', href: 'http://localhost:3001/' },
+    { title: name, href: '#' },
+  ].map((item, index) => (
+    <Anchor href={item.href} key={index}>
+      {item.title}
+    </Anchor>
+  ));
 
-export default function MovieBreadCrumbs() {
   return (
     <>
       <Breadcrumbs>{items}</Breadcrumbs>

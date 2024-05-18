@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Combobox, Input, InputBase, Loader, ScrollArea, useCombobox } from '@mantine/core';
-import { getGenres } from '../ulits/api';
+import { getGenres } from '../../ulits/api';
 import style from './genres-input.module.css';
 import { IGenres } from './type';
 

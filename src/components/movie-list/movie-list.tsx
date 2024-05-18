@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getMovies } from '../ulits/api';
+import Link from 'next/link';
+import { getMovies } from '../../ulits/api';
 import MovieCard from '../movie-card/movie-card';
 import style from './movie-list.module.css'
 import { CardSize } from '../movie-card/constants';
+
 
 export default function MovieList () {
 
@@ -19,11 +21,17 @@ export default function MovieList () {
         <div className={style.main}>
         {films && films.map((film) => {
             return (
-                <MovieCard 
-                    film={film} 
+                <Link 
                     key={film.id} 
-                    size={CardSize.small}
-                />
+                    href={`/movies/${film.id}`}
+                    className={style.link}
+                >
+                    <MovieCard 
+                        film={film} 
+                        key={film.id} 
+                        size={CardSize.small}
+                    />
+                </Link>
             )
         })
         } 

@@ -1,6 +1,6 @@
 import { Paper, Title, Divider, Text, Group, Image } from "@mantine/core";
 import style from './about-movie.module.css'
-import { getImageUrl } from "../ulits/utils";
+import { getImageUrl } from "../..//ulits/utils";
 
 export default function AboutMovie ({film}) {
     return (

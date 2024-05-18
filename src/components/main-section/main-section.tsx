@@ -1,4 +1,4 @@
-import { Title } from "@mantine/core";
+import { Title, Pagination } from "@mantine/core";
 import { InputsPanel } from "../inputs-panel/inputs-panel";
 import SortBy  from "../sort-by/sort-by";
 import MovieList from "../movie-list/movie-list";
@@ -13,6 +13,7 @@ export default function MainSection () {
                 <SortBy />
             </div>
             <MovieList />
+            <Pagination total={3} />
         </div>
     )
 }

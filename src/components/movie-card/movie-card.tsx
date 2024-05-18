@@ -4,7 +4,7 @@ import no_bg from '../../images/no-bg.png'
 import { useState } from 'react';
 import { CardSize } from './constants';
 import clsx from 'clsx';
-import { getImageUrl } from '../ulits/utils';
+import { getImageUrl } from '../../ulits/utils';
 
 export default function MovieCard({film, size}) {
 
@@ -13,16 +13,8 @@ export default function MovieCard({film, size}) {
     const imageWidth = size === CardSize.big ? 250 : 119;
     const imageHeight = size === CardSize.big ? 353 : 170;
 
-    const [filmId, setFilmId] = useState('');
-
-    async function handleId () {
-        setFilmId(film.id)
-        console.log(filmId)
-    }
-
   return (
     <Paper 
-        onClick={handleId} 
         className={clsx(
             style.main,
             style[`main_${size}`]
@@ -53,7 +45,7 @@ export default function MovieCard({film, size}) {
                     <Group style={{margin: 0, padding: 0}}>
                         <Group style={{gap: 5}}>
                             <Rating size="lg" count={1} defaultValue={1} />
-                            <Text size="s" fw={600}>{film.vote_average}</Text>
+                            <Text size="s" fw={600} c="dark">{film.vote_average}</Text>
                         </Group>
                         <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
                     </Group>
@@ -62,22 +54,22 @@ export default function MovieCard({film, size}) {
                     { size === CardSize.big ?  (
                             <><Group>
                               <Text c="gray" size="s" style={{ width: '140px' }}>Duration</Text>
-                              <Text>{film.runtime}</Text>
+                              <Text c="dark">{film.runtime}</Text>
                           </Group><Group>
                                   <Text c="gray" size="s" style={{ width: '140px' }}>Premiere</Text>
                                   <Text>December 6, 1999</Text>
                               </Group><Group style={{ display: "flex" }}>
                                   <Text c="gray" size="s" style={{ width: '140px' }}>Budget</Text>
-                                  <Text>{film.budget}</Text>
+                                  <Text c="dark">{film.budget}</Text>
                               </Group><Group>
                                   <Text c="gray" size="s" style={{ width: '140px' }}>Gross worldwide</Text>
-                                  <Text>{film.revenue}</Text>
+                                  <Text c="dark">{film.revenue}</Text>
                               </Group></> 
                         ) : <></>
                     }
                     <Group>
                         <Text c="gray" size="s" style={{width: '140px'}}>Genres</Text>
-                        <Text>genres</Text>
+                        <Text c="dark" >genres</Text>
                     </Group>
                 </Group>
             </Group> 
