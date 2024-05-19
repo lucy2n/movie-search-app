@@ -50,7 +50,7 @@ export default function MovieCard({film, size}) {
                         <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
                     </Group>
                 </Group>
-                <Group style={{display: "flex", flexDirection:"column", alignItems: "start", gap: '7px', marginRight: '60px'}}>
+                <Group style={{display: "flex", flexDirection:"column", alignItems: "start", gap: '7px'}}>
                     { size === CardSize.big ?  (
                             <><Group>
                               <Text c="gray" size="s" style={{ width: '140px' }}>Duration</Text>
@@ -67,9 +67,9 @@ export default function MovieCard({film, size}) {
                               </Group></> 
                         ) : <></>
                     }
-                    <Group>
+                    <Group className={style.point}>
                         <Text c="gray" size="s" style={{width: '140px'}}>Genres</Text>
-                        <Text c="dark" >genres</Text>
+                        <Text c="dark">genres</Text>
                     </Group>
                 </Group>
             </Group> 

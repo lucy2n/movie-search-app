@@ -15,7 +15,6 @@ export default function GenresInput() {
       if (data.length === 0 && !loading) {
         setLoading(true);
         getGenres().then((response) => {
-            console.log(response.genres)
           setData(response.genres);
           setLoading(false);
           combobox.resetSelectedOption();

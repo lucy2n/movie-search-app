@@ -1,4 +1,5 @@
-const base_url = 'https://api.themoviedb.org/3'
+import { base_url } from "./constants";
+import { getMoviesUrl } from "./utils";
 
 const options = {
 	method: 'GET',
@@ -12,8 +13,9 @@ const checkResponse = <T>(res: Response): Promise<T> => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const getMovies = async () => {
-  	const res = await fetch(`${base_url}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`, options)
+export const getMovies = async (filters: MovieFilters) => {
+	const url = getMoviesUrl(filters);
+  	const res = await fetch(url, options);
 	return checkResponse(res);
 };
 
@@ -25,4 +27,18 @@ export const getFilmInformation = async (id: number | string) => {
 export const getGenres = async () => {
 	const res = await fetch(`${base_url}/genre/movie/list?language=en`, options)
 	return checkResponse(res);
+}
+
+export const getVideo = async (id: string | number) => {
+	const res = await fetch(`${base_url}/movie/${id}/videos`, options)
+	return checkResponse(res);
+}
+
+export interface MovieFilters {
+	genres?: string[],
+	year?: string,
+	ratingFrom?: string,
+	ratingTo?: string,
+	sortType?: string,
+	page?: string
 }

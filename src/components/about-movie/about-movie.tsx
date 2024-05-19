@@ -1,10 +1,23 @@
 import { Paper, Title, Divider, Text, Group, Image } from "@mantine/core";
 import style from './about-movie.module.css'
 import { getImageUrl } from "../..//ulits/utils";
+import { useEffect, useState } from "react";
+import { getVideo } from "@/ulits/api";
 
 export default function AboutMovie ({film}) {
+
+    const [video, setVideo] = useState(null)
+     
+    useEffect(() => {
+        getVideo(film.id)
+        .then(res => {
+            setVideo(res.results[0])
+        })
+    })
+
     return (
-        <Paper
+        ( video && 
+            <Paper
             className={style.main}
             shadow="xs" 
             p="l" 
@@ -16,9 +29,9 @@ export default function AboutMovie ({film}) {
                         Trailer
                     </Title>
                     <iframe
-                        width="853"
-                        height="480"
-                        src={`https://www.youtube.com/embed/${embedId}`}
+                        width="600"
+                        height="380"
+                        src={`https://www.youtube.com/embed/${video.key}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="Embedded youtube" />
@@ -54,5 +67,6 @@ export default function AboutMovie ({film}) {
             </div>
         </Paper>
 
+        )
     )
 }

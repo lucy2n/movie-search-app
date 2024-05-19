@@ -53,3 +53,7 @@
     gap: 5px;
 }
 
+.point {
+    display: flex;
+}
+

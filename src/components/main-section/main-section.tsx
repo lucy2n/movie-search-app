@@ -10,7 +10,6 @@ export default function MainSection () {
             <Title>Movies</Title>
             <div className={style.inputs}>
                 <InputsPanel />
-                <SortBy />
             </div>
             <MovieList />
             <Pagination total={3} />
