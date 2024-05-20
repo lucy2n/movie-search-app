@@ -1,11 +1,13 @@
 import { Select } from "@mantine/core";
 import style from './year-input.module.css'
+import { useFiltersFormContext } from "../inputs-panel/form-context";
 
 export default function YearInput() {
+    const form = useFiltersFormContext();
 
     function compareNumbers(a: string, b: string) {
         return +b - +a;
-      }
+    }
 
     let years = function(startYear: number) {
         var currentYear = new Date().getFullYear(), years = [];
@@ -15,11 +17,11 @@ export default function YearInput() {
         }   
         return years.sort(compareNumbers);
     }
-    
-
 
     return(
         <Select
+            key={form.key('year')}
+            {...form.getInputProps('year')}
             className={style.input}
             radius='md'
             label="Release year"

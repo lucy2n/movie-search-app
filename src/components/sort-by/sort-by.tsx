@@ -1,10 +1,15 @@
 import { Select } from "@mantine/core"
 import style from './sort-by.module.css';
 import { Sort } from "./constants";
+import { useFiltersFormContext } from "../inputs-panel/form-context";
 
 export default function SortBy () {
+    const form = useFiltersFormContext();
+
     return (
         <Select
+            key={form.key('sortType')}
+            {...form.getInputProps('sortType')}
             radius='md'
             className={style.input}
             label="Sort by"

@@ -1,12 +1,12 @@
 import { Paper, Image, Text, Group, Rating } from '@mantine/core';
 import style from './movie-card.module.css'
 import no_bg from '../../images/no-bg.png'
-import { useState } from 'react';
 import { CardSize } from './constants';
 import clsx from 'clsx';
 import { getImageUrl } from '../../ulits/utils';
+import { IMovie } from '@/types/movie';
 
-export default function MovieCard({film, size}) {
+export default function MovieCard({film, size} : { film: IMovie, size: string }) {
 
     const image = film.poster_path ? getImageUrl(film.poster_path) : no_bg;
     const year = new Date(film.release_date).getFullYear();

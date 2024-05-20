@@ -4,19 +4,10 @@ import { getMovies } from '../../ulits/api';
 import MovieCard from '../movie-card/movie-card';
 import style from './movie-list.module.css'
 import { CardSize } from '../movie-card/constants';
+import { IMovie } from '@/types/movie';
 
 
-export default function MovieList () {
-
-    const [films, setFilms] = useState([]);
-
-    useEffect(() => {
-        getMovies()
-        .then((res) => {
-            setFilms(res.results)
-        })
-    }, [])
-
+export default function MovieList ({films}: {films: IMovie[]}) {
     return (
         <div className={style.main}>
         {films && films.map((film) => {

@@ -9,13 +9,13 @@ export function getVideoUrl (id: string): string {
     return `https://api.themoviedb.org/3/movie/${id}/videos`
 }
 
-export function getMoviesUrl(filters: MovieFilters): string {
+export function getMoviesUrl(filters?: MovieFilters): string {
     const url = `${base_url}/discover/movie?include_adult=true&include_video=true`
     if(filters === undefined) {
         return url
     } else {
         let urlParams = new URLSearchParams()
-        // urlParams.set('with_genres', filters.genres.join(", "))
+        urlParams.set('with_genres', filters?.genres?.join(", ").toLowerCase() ?? "")
         urlParams.set('primary_release_year', filters.year ?? "")
         urlParams.set('vote_average.lte', filters.ratingFrom ?? "")
         urlParams.set('vote_average.gte', filters.ratingTo ?? "")

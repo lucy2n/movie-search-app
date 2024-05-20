@@ -1,3 +1,4 @@
+import { IMovie, IMovieResponse } from "@/types/movie";
 import { base_url } from "./constants";
 import { getMoviesUrl } from "./utils";
 
@@ -13,15 +14,15 @@ const checkResponse = <T>(res: Response): Promise<T> => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const getMovies = async (filters: MovieFilters) => {
+export const getMovies = async (filters?: MovieFilters): Promise<IMovieResponse> => {
 	const url = getMoviesUrl(filters);
   	const res = await fetch(url, options);
-	return checkResponse(res);
+	return checkResponse<IMovieResponse>(res);
 };
 
-export const getFilmInformation = async (id: number | string) => {
+export const getFilmInformation = async (id: number | string): Promise<IMovie> => {
 	const res = await fetch(`${base_url}/movie/${id}?language=en-US`, options)
-	return checkResponse(res);
+	return checkResponse<IMovie>(res);
 }
 
 export const getGenres = async () => {

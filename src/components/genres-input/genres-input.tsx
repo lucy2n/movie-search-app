@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Combobox, Input, InputBase, Loader, ScrollArea, useCombobox } from '@mantine/core';
 import { getGenres } from '../../ulits/api';
 import style from './genres-input.module.css';
 import { IGenres } from './type';
+import { useFiltersFormContext } from '../inputs-panel/form-context';
 
 export default function GenresInput() {
   const [value, setValue] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<IGenres[]>([]);
+  const form = useFiltersFormContext();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => {
       if (data.length === 0 && !loading) {
         setLoading(true);
-        getGenres().then((response) => {
+        getGenres()
+        .then((response) => {
           setData(response.genres);
           setLoading(false);
           combobox.resetSelectedOption();
@@ -29,10 +32,14 @@ export default function GenresInput() {
     </Combobox.Option>
   ));
 
-  const handleValueSelect = (val: string) =>
-    setValue((current) =>
-      current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
-    );
+  const handleValueSelect = (val: string) => {
+    const newValue = value.includes(val)
+      ? value.filter((v) => v !== val)
+      : [...value, val];
+    setValue(newValue);
+    form.setFieldValue('genres', newValue);
+  };
+
 
   return (
     <Combobox
@@ -43,7 +50,10 @@ export default function GenresInput() {
         combobox.closeDropdown();
       }}
     >
-      <Combobox.Target>
+      <Combobox.Target
+            key={form.key('genres')}
+            {...form.getInputProps('genres')}
+      >
         <InputBase
           label='Genres'
           radius='md'
