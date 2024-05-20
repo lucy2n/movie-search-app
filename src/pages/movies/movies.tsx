@@ -1,4 +1,4 @@
-import { Title, Pagination } from "@mantine/core";
+import { Title } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { InputsPanel } from "../../components/inputs-panel/inputs-panel";
 import MovieList from "../../components/movie-list/movie-list";
@@ -26,7 +26,6 @@ export default function Movies () {
                 <InputsPanel fetchMovies={fetchMovies}/>
             </div>
             <MovieList films={films}/>
-            <Pagination total={3} />
         </div>
     )
 }

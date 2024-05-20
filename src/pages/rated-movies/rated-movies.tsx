@@ -1,33 +1,49 @@
-import { Button, Image, Text } from "@mantine/core";
-import NextImage from 'next/image';
-import image from '../../images/pic.svg';
-import style from './rated-movies.module.css'
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { Title } from '@mantine/core';
+import { getFilmInformation } from '@/ulits/api';
+import MovieList from '@/components/movie-list/movie-list';
+import { IMovie } from '@/types/movie';
+import NoRatedMovies from '@/components/no-rated/no-rated';
 
-export default function NoRatedMoviesSection () {
-    return (
-        <div className={style.main}>
-            <Image 
-                className={style.image}
-                component={NextImage}
-                alt="No rated movies"
-                src={image}
-            />
-            <Text 
-                fw={700} 
-                c="dark"
-                className={style.text}
-            >
-                You haven't rated any films yet
-            </Text>
-            <Link
-               href={'/movies/movies'}
-               style={{textDecoration: 'none'}}
-            >
-                <Button radius={8}>
-                    Find movies
-                </Button>
-            </Link>
-        </div>
-    )
-}
+const RatedMovies = () => {
+  const [ratedMoviesId, setRatedMoviesId] = useState<string[]>([]);
+  const [ratedMovies, setRatedMovies] = useState<IMovie[]>([]);
+
+  useEffect(() => {
+    const movies = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith('movie-rating-')) {
+        const movieId = key.replace('movie-rating-', '');
+        movies.push(movieId);
+      }
+    }
+    setRatedMoviesId(movies);
+  }, []);
+
+  useEffect(() => {
+    ratedMoviesId.forEach(id => {
+      getFilmInformation(id)
+      .then(res => {
+        setRatedMovies((ratedMovies) => [...ratedMovies, res])
+      })
+    })
+  }, [ratedMoviesId])
+
+  console.log(ratedMovies)
+
+
+  return (
+    <div>
+        {ratedMovies.length !== 0 ?
+          <>
+          <Title>Rated Movies</Title>
+          <MovieList films={ratedMovies} />
+          </>
+          : <NoRatedMovies />
+        }
+    </div>
+  );
+};
+
+export default RatedMovies;

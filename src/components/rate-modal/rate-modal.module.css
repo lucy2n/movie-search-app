@@ -1,0 +1,14 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.modal__rating {
+    display: flex;
+    gap: 8px
+}
+
+.modal__buttons {
+    display: flex;
+}
