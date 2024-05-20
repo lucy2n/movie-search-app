@@ -45,7 +45,7 @@ export default function RateModal ({opened, close, film}) {
                     <Button variant="filled" radius={5} onClick={addRating}>
                         Save
                     </Button>
-                    <Button variant="subtle" radius={5} onClick={deleteRating}>
+                    <Button variant="transparent" radius={5} onClick={deleteRating}>
                         Remove rating
                     </Button>
                 </div>

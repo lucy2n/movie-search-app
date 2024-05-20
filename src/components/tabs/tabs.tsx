@@ -8,7 +8,7 @@ export default function MenuTabs () {
         <Tabs orientation="vertical" variant="unstyled" defaultValue="movies" classNames={classes}>
           <Tabs.List grow>
             <Link
-               href={'/movies/movies'}
+               href={'/'}
                style={{textDecoration: 'none'}}
             >
               <Tabs.Tab

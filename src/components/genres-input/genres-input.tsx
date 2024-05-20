@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Combobox, Input, InputBase, Loader, ScrollArea, useCombobox } from '@mantine/core';
+import { Combobox, ComboboxOptionProps, Input, InputBase, Loader, ScrollArea, useCombobox } from '@mantine/core';
 import { getGenres } from '../../ulits/api';
 import style from './genres-input.module.css';
 import { IGenres } from './type';
@@ -7,6 +7,7 @@ import { useFiltersFormContext } from '../inputs-panel/form-context';
 
 export default function GenresInput() {
   const [value, setValue] = useState<string[]>([]);
+  const [genreIDs, setGenreIDs] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<IGenres[]>([]);
   const form = useFiltersFormContext();
@@ -27,17 +28,22 @@ export default function GenresInput() {
   });
 
   const options = data.map((item, index) => (
-    <Combobox.Option value={item.name} key={item.id} onMouseOver={() => combobox.selectOption(index)}>
+    <Combobox.Option value={item.name} id={item.id + ''} key={item.id} onMouseOver={() => combobox.selectOption(index)}>
       {item.name}
     </Combobox.Option>
   ));
 
-  const handleValueSelect = (val: string) => {
+  const handleValueSelect = (option: ComboboxOptionProps) => {
+    const val = option.value
+    const id = option.id ?? ""
     const newValue = value.includes(val)
       ? value.filter((v) => v !== val)
       : [...value, val];
+    const newIDs = genreIDs.includes(id)
+      ? genreIDs.filter((v) => v !== id)
+      : [...genreIDs, id];
     setValue(newValue);
-    form.setFieldValue('genres', newValue);
+    form.setFieldValue('genres', newIDs);
   };
 
 
@@ -45,8 +51,8 @@ export default function GenresInput() {
     <Combobox
       store={combobox}
       withinPortal={false}
-      onOptionSubmit={(val) => {
-        handleValueSelect(val)
+      onOptionSubmit={(val, option) => {
+        handleValueSelect(option)
         combobox.closeDropdown();
       }}
     >

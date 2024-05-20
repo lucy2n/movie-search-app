@@ -21,7 +21,7 @@ export default function NoRatedMovies () {
                 You haven't rated any films yet
             </Text>
             <Link
-               href={'/movies/movies'}
+               href={'/'}
                style={{textDecoration: 'none'}}
             >
                 <Button radius={8}>
