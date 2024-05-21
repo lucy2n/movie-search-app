@@ -10,6 +10,7 @@ import { RatedFormProvider, useRatedForm } from './rated-form-context';
 const RatedMovies = () => {
   const [ratedMoviesId, setRatedMoviesId] = useState<string[]>([]);
   const [ratedMovies, setRatedMovies] = useState<IMovie[]>([]);
+  const [filter, setFilter] = useState<string>('');
 
   const form = useRatedForm({ 
     initialValues: {
@@ -30,18 +31,22 @@ const RatedMovies = () => {
   }, []);
 
   useEffect(() => {
+    fetchRatedMovies()
+  }, [ratedMoviesId])
+
+  const fetchRatedMovies = () => {
+    setRatedMovies([])
     ratedMoviesId.forEach(id => {
       getFilmInformation(id)
       .then(res => {
         setRatedMovies((ratedMovies) => [...ratedMovies, res])
       })
     })
-  }, [ratedMoviesId])
+  }
 
   const handleSubmit = (values: typeof form.values) => {
-    setRatedMovies((ratedMovies) => ratedMovies.filter(film => film.original_title.toLowerCase() == values.name))
+    setFilter(values.name ?? '')
   };
-
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
@@ -52,7 +57,7 @@ const RatedMovies = () => {
         </form>
       </RatedFormProvider>
         {ratedMovies.length !== 0 ?
-          <MovieList films={ratedMovies} />
+          <MovieList films={ratedMovies.filter((film) =>  filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true )} />
           : <NoRatedMovies />
         }
     </div>
