@@ -6,6 +6,7 @@ import { IMovie } from '@/types/movie';
 import NoRatedMovies from '@/components/no-rated/no-rated';
 import NameInput from '@/components/name-input/name-input';
 import { RatedFormProvider, useRatedForm } from './rated-form-context';
+import style from './rated-movies.module.css';
 
 const RatedMovies = () => {
   const [ratedMoviesId, setRatedMoviesId] = useState<string[]>([]);
@@ -49,16 +50,17 @@ const RatedMovies = () => {
   };
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+    <div className={style.main}>
       <RatedFormProvider form={form}>
-        <form onSubmit={form.onSubmit(handleSubmit)} style={{display: 'flex', justifyContent: 'space-between'}}>
+        <form onSubmit={form.onSubmit(handleSubmit)} className={style.form}>
           <Title>Rated Movies</Title>
           <NameInput />
         </form>
       </RatedFormProvider>
-        {ratedMovies.length !== 0 ?
-          <MovieList films={ratedMovies.filter((film) =>  filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true )} />
-          : <NoRatedMovies />
+        {(Array.isArray(ratedMovies) && ratedMovies.length) ?
+           <MovieList films={ratedMovies.filter((film) =>  filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true )} />
+          : 
+          <NoRatedMovies />
         }
     </div>
   );

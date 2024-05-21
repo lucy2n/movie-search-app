@@ -12,3 +12,10 @@
     top: 22px;
     right: 10px
 }
+
+@media screen and (max-width: 920px) {
+    .main {
+        width: 300px;
+        position: relative;
+    }
+}

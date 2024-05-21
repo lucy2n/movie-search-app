@@ -1,6 +1,7 @@
 .main {
     display: flex;
     max-width: 980px;
+    height: 100%;
     flex-direction: column;
     align-items: start;
     gap: 40px

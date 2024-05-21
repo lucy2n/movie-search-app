@@ -6,3 +6,10 @@
     align-items: center;
     gap: 10px
 }
+
+@media screen and (max-width: 1225px) {
+    .panel {
+        justify-content: start;
+        align-items: start;
+    }
+}

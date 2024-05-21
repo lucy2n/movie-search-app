@@ -62,12 +62,12 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                   style.container,
                   style[`container_${size}`]
               )}>
-                  <Image
-                      src={image}
-                      height={imageHeight}
-                      width={imageWidth}
-                      alt={film.original_title}
-                    />
+                <Image
+                    src={image}
+                    height={imageHeight}
+                    width={imageWidth}
+                    alt={film.original_title}
+                />
 
                 <Link 
                     key={film.id} 
@@ -83,50 +83,52 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                       <Group style={{ dispaly: "flex", height: '112px', flexDirection: "column", alignItems: "start", gap: "0"}}>
                           <Text fw={700} c="grape" size="lg">{film.original_title}</Text>
                           <Text c="gray" size="s" fw={500}>{year}</Text>
-                          <Group style={{ margin: 0, padding: 0 }}>
-                              <Group style={{ gap: 5 }}>
+                          <Group>
+                              <Group>
                                   <Rating size="lg" count={1} defaultValue={1} />
                                   <Text size="s" fw={600} c="dark">{film.vote_average}</Text>
                               </Group>
                               <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
                           </Group>
                       </Group>
-                      <Group style={{ display: "flex", flexDirection: "column", alignItems: "start", gap: '5px' }}>
+                      <Group className={style.desc}>
                           {size === CardSize.big ? (
-                              <><Group>
-                                  <Text c="gray" size="s" style={{ width: '140px' }}>Duration</Text>
+                              <><Group className={style.point}>
+                                  <Text c="gray" size="s" >Duration</Text>
                                   <Text c="dark">{film.runtime}</Text>
-                              </Group><Group>
-                                      <Text c="gray" size="s" style={{ width: '140px' }}>Premiere</Text>
+                              </Group>
+                              <Group className={style.point}>
+                                      <Text c="gray" size="s" >Premiere</Text>
                                       <Text c="dark">December 6, 1999</Text>
-                                  </Group><Group style={{ display: "flex" }}>
-                                      <Text c="gray" size="s" style={{ width: '140px' }}>Budget</Text>
+                                </Group>
+                                <Group className={style.point}>
+                                      <Text c="gray" size="s" >Budget</Text>
                                       <Text c="dark">{film.budget}</Text>
-                                  </Group><Group>
-                                      <Text c="gray" size="s" style={{ width: '140px' }}>Gross worldwide</Text>
+                                  </Group>
+                                  <Group className={style.point}>
+                                      <Text c="gray" size="s" >Gross worldwide</Text>
                                       <Text c="dark">{film.revenue}</Text>
                                   </Group></>
                           ) : <></>}
                           <Group className={style.point}>
-                              <Text c="gray" size="s">Genres</Text>
-                                    <Text className={style.genres} c="dark">{genres?.join(', ')}</Text>
+                                <Text c="gray" size="s">Genres</Text>
+                                <Text className={style.genres} c="dark">{genres?.join(', ')}</Text>
                           </Group>
                       </Group>
                   </Group>
                 </Link>
-                <div style={{position: 'absolute', right: '20px', top:'20px', display: 'flex', alignItems: 'center'}}>
-                      <Rating 
-                            className={style.rating}
-                            onClick={open} 
-                            size="lg" 
-                            count={1}
-                            value={rating > 0 ? 1 : 0} 
-                            color='grape' 
-                        />
-                        { rating > 0 &&
-                            <Text c="dark" fw={700}>{rating}</Text>
-                        }
-                </div>  
+                <Group className={style.rating}>
+                    <Rating 
+                        onClick={open} 
+                        size="lg" 
+                        count={1}
+                        value={rating > 0 ? 1 : 0} 
+                        color='grape' 
+                    />
+                    { rating > 0 &&
+                        <Text c="dark" fw={700}>{rating}</Text>
+                    }
+                </Group>  
               </div>
           </Paper></>
   );
