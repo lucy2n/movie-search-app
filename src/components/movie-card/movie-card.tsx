@@ -10,10 +10,11 @@ import { useDisclosure } from '@mantine/hooks';
 import RateModal from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
 import { getGenres } from '@/ulits/api';
+import NextImage from 'next/image';
 
 export default function MovieCard({film, size} : { film: IMovie, size: string }) {
 
-    const image = film.poster_path ? getImageUrl(film.poster_path) : no_bg;
+    const image = film.poster_path !== undefined ? getImageUrl(film.poster_path) : no_bg;
     const year = new Date(film.release_date).getFullYear();
     const imageWidth = size === CardSize.big ? 250 : 119;
     const imageHeight = size === CardSize.big ? 353 : 170;
@@ -31,16 +32,17 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
     }
 
     useEffect(() => {
-        if (film != undefined) {
-            getRating();
+        getRating();
+        if (film.genres == undefined) {
             getGenres()
-            .then(res =>{
+            .then(res => {
                 let arr = res.genres;
                 setGenres(film.genre_ids?.map(id => {
                     return arr.filter(item => item.id === id)[0].name
                 }))
-
             })
+        } else {
+            setGenres(film.genres.map((g) => g.name))
         }
     }, [])
 
@@ -61,10 +63,11 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                   style[`container_${size}`]
               )}>
                   <Image
+                      src={image}
                       height={imageHeight}
                       width={imageWidth}
                       alt={film.original_title}
-                      src={image} />
+                    />
 
                 <Link 
                     key={film.id} 
@@ -77,7 +80,7 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                           style[`info_${size}`]
                       )}
                   >
-                      <Group style={{ dispaly: "flex", flexDirection: "column", alignItems: "start", gap: "0"}}>
+                      <Group style={{ dispaly: "flex", height: '112px', flexDirection: "column", alignItems: "start", gap: "0"}}>
                           <Text fw={700} c="grape" size="lg">{film.original_title}</Text>
                           <Text c="gray" size="s" fw={500}>{year}</Text>
                           <Group style={{ margin: 0, padding: 0 }}>

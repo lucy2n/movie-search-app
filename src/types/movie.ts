@@ -1,3 +1,5 @@
+import { IGenres } from "@/components/genres-input/type";
+
 export interface IMovie {
     id: string;
     original_title: string;
@@ -5,6 +7,7 @@ export interface IMovie {
     release_date: string;
     vote_average: string;
     vote_count: string;
+    genres: IGenres[];
     genre_ids: string[];
     runtime: string;
     budget: string;

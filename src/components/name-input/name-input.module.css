@@ -1,0 +1,14 @@
+.main {
+    width: 490px;
+    position: relative;
+}
+
+.input {
+    width: 100%;
+}
+
+.button {
+    position: absolute;
+    top: 22px;
+    right: 10px
+}

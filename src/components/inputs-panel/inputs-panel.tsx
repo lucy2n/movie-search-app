@@ -12,16 +12,15 @@ export function InputsPanel({fetchMovies}) {
 
   const form = useFiltersForm({
     initialValues: {
-      genres: [],
-      year: '',
-      raitingBottom: '',
-      raitingTop: '',
-      sortType: ''
+      genres: null,
+      year: null,
+      raitingBottom: null,
+      raitingTop: null,
+      sortType: null
     }
   });
 
   useEffect(() => {
-    console.log(form.values)
     applyFilters()
   }, [form.values])
 
@@ -45,7 +44,7 @@ export function InputsPanel({fetchMovies}) {
             key={form.key('rating')}
             {...form.getInputProps('rating')}
           />
-          <Button variant="transparent" color="gray">Reset filters</Button>
+          <Button variant="transparent" color="gray" onClick={() => { form.reset() }}>Reset filters</Button>
           <SortBy/>
       </form>
     </FiltersFormProvider>

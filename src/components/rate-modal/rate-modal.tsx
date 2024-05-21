@@ -34,7 +34,6 @@ export default function RateModal ({opened, close, film}) {
                 </Text>
                 <Rating
                     className={style.modal__rating}
-                    color='grape'
                     count={10}
                     value={rating} 
                     onChange={setRating}
