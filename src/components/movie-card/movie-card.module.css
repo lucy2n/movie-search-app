@@ -8,7 +8,7 @@
 }
 
 .main_big {
-    max-width: 800px;
+    width: 800px;
 }
 
 .container {
@@ -60,6 +60,8 @@
     flex-direction: column;
     align-items: start;
     gap: 5px;
+    box-sizing: border-box;
+    width: 100%
 }
 
 .link {
@@ -88,26 +90,27 @@
     .info_big {
         max-width: 400px;
     }
-}
-/* 
-@media screen and (max-width: 805px) {
-    .container {
-        flex-direction: column;
-        height: 200px;
-    }
-
-    .main_small {
-        max-width: 300px;
-    }
 
     .main_big {
-        flex-direction: column;
-        max-width: 800px;
+        max-width: 700px;
     }
 
-    .point {
+}
+
+@media screen and (max-width: 1080px) {
+
+    .main_big {
+        max-width: 600px;
+    }
+
+    .rating {
+        right: 5px;
+        top: 20px;
+        gap: 1px;
+    }
+
+    .info_big {
+        margin-left: 0;
         max-width: 300px;
     }
-
-	
-} */
+}

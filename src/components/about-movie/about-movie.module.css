@@ -24,3 +24,16 @@
     border: solid 1px #F1F1F1;
     background-size: contain;
 }
+
+
+@media screen and (max-width: 1200px) {
+    .main {
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .main {
+        max-width: 600px;
+    }
+}

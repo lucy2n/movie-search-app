@@ -6,3 +6,9 @@
     align-items: start;
     gap: 40px
 }
+
+@media screen and (max-width: 900px) {
+    .main {
+        align-items: center;
+    }
+}

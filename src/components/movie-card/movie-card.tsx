@@ -10,7 +10,6 @@ import { useDisclosure } from '@mantine/hooks';
 import RateModal from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
 import { getGenres } from '@/ulits/api';
-import NextImage from 'next/image';
 
 export default function MovieCard({film, size} : { film: IMovie, size: string }) {
 
@@ -45,6 +44,10 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
             setGenres(film.genres.map((g) => g.name))
         }
     }, [])
+
+    useEffect(() => {
+        getRating()
+    }, [rating])
 
   return (
     <>
@@ -84,7 +87,7 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                           <Text fw={700} c="grape" size="lg">{film.original_title}</Text>
                           <Text c="gray" size="s" fw={500}>{year}</Text>
                           <Group>
-                              <Group>
+                              <Group key={1}>
                                   <Rating size="lg" count={1} defaultValue={1} />
                                   <Text size="s" fw={600} c="dark">{film.vote_average}</Text>
                               </Group>

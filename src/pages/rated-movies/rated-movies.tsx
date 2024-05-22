@@ -51,14 +51,14 @@ const RatedMovies = () => {
 
   return (
     <div className={style.main}>
-      <RatedFormProvider form={form}>
-        <form onSubmit={form.onSubmit(handleSubmit)} className={style.form}>
-          <Title>Rated Movies</Title>
-          <NameInput />
-        </form>
-      </RatedFormProvider>
-        {(Array.isArray(ratedMovies) && ratedMovies.length) ?
-           <MovieList films={ratedMovies.filter((film) =>  filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true )} />
+        {(Array.isArray(ratedMovies) && ratedMovies.length) ? (
+          <><RatedFormProvider form={form}>
+          <form onSubmit={form.onSubmit(handleSubmit)} className={style.form}>
+            <Title>Rated Movies</Title>
+            <NameInput />
+          </form>
+        </RatedFormProvider><MovieList films={ratedMovies.filter((film) => filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true)} /></>
+        )
           : 
           <NoRatedMovies />
         }
