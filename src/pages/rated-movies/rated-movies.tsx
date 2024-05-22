@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Title } from '@mantine/core';
-import { getFilmInformation } from '@/ulits/api';
+import { getFilmInformation } from '@/utils/api';
 import MovieList from '@/components/movie-list/movie-list';
 import { IMovie } from '@/types/movie';
 import NoRatedMovies from '@/components/no-rated/no-rated';

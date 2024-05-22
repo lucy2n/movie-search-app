@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Combobox, ComboboxOptionProps, Input, InputBase, Loader, ScrollArea, useCombobox } from '@mantine/core';
-import { getGenres } from '../../ulits/api';
+import { getGenres } from '../../utils/api';
 import style from './genres-input.module.css';
 import { IGenres } from './type';
 import { useFiltersFormContext } from '../inputs-panel/form-context';
@@ -42,6 +42,7 @@ export default function GenresInput() {
     const newIDs = genreIDs.includes(id)
       ? genreIDs.filter((v) => v !== id)
       : [...genreIDs, id];
+    setGenreIDs(newIDs);
     setValue(newValue);
     form.setFieldValue('genres', newIDs);
   };

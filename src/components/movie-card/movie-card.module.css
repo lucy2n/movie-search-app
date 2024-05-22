@@ -46,6 +46,10 @@
     max-width: 280px;
 }
 
+.info__main {
+    display: flex;
+}
+
 .rating {
     position: absolute;
     right: 20px;
@@ -112,5 +116,49 @@
     .info_big {
         margin-left: 0;
         max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+
+    .main_big {
+        min-height: 200px;
+        max-width: 600px;
+    }
+
+    .main_small {
+        align-items: center;
+        max-width: 250px;
+    }
+
+    .container_small {
+        max-width: 200px;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .info_big {
+        margin-left: 0;
+        max-width: 250px;
+    }
+
+    .info_small {
+        height: 130px;
+        margin-left: 0;
+        max-width: 150px;
+    }
+
+    .point {
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .point {
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 170px;
     }
 }

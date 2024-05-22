@@ -6,7 +6,7 @@ import RaitingInput from '../raiting-input/raiting-input';
 import SortBy from '../sort-by/sort-by';
 import { FiltersFormProvider, useFiltersForm } from './form-context';
 import { useEffect } from 'react';
-import { MovieFilters } from '@/ulits/api';
+import { MovieFilters } from '@/utils/api';
 
 export function InputsPanel({fetchMovies}) {
 

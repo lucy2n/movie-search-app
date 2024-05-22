@@ -16,5 +16,6 @@ export interface IMovie {
 
 export interface IMovieResponse {
     results: IMovie[];
+    total_pages: number;
     total: number;
 }

@@ -9,16 +9,17 @@ import SideBar from '@/components/side-bar/side-bar';
 import Layout from '@/components/layout/layout';
 
 const myColor: MantineColorsTuple = [
-  '#f6eeff',
-  '#e7daf7',
-  '#cab1ea',
-  '#ad86dd',
-  '#9562d2',
-  '#854bcb',
-  '#7d3ec9',
-  '#6b31b2',
-  '#5f2aa0',
-  '#52228d'
+    '#F2ECFA',
+    '#F2ECFA',
+    '#E5D5FA',
+    '#D1B4F8',
+    '#BD93F7',
+    '#9854F6',
+    '#9854F6',
+    '#541F9D',
+    '#541F9D',
+    '#541F9D',
+    '#541F9D',
 ];
 
 const theme: MantineThemeOverride = {

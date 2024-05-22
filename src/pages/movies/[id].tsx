@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import MovieCard from "../../components/movie-card/movie-card";
 import { useState, useEffect } from "react";
-import { getFilmInformation } from "../../ulits/api";
+import { getFilmInformation } from "../../utils/api";
 import { CardSize } from "../../components/movie-card/constants";
 import AboutMovie from "../../components/about-movie/about-movie";
 import MovieBreadCrumbs from "@/components/bread-crumbs/bread-crumbs";

@@ -14,8 +14,8 @@ const checkResponse = <T>(res: Response): Promise<T> => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const getMovies = async (filters?: MovieFilters): Promise<IMovieResponse> => {
-	const url = getMoviesUrl(filters);
+export const getMovies = async (filters?: MovieFilters, page?: number): Promise<IMovieResponse> => {
+	const url = getMoviesUrl(filters, page);
   	const res = await fetch(url, options);
 	return checkResponse<IMovieResponse>(res);
 };

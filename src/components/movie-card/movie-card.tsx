@@ -4,12 +4,12 @@ import style from './movie-card.module.css'
 import no_bg from '../../images/no-bg.png'
 import { CardSize } from './constants';
 import clsx from 'clsx';
-import { getImageUrl } from '../../ulits/utils';
+import { getImageUrl } from '../../utils/utils';
 import { IMovie } from '@/types/movie';
 import { useDisclosure } from '@mantine/hooks';
 import RateModal from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
-import { getGenres } from '@/ulits/api';
+import { getGenres } from '@/utils/api';
 
 export default function MovieCard({film, size} : { film: IMovie, size: string }) {
 
@@ -83,8 +83,8 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                           style[`info_${size}`]
                       )}
                   >
-                      <Group style={{ dispaly: "flex", height: '112px', flexDirection: "column", alignItems: "start", gap: "0"}}>
-                          <Text fw={700} c="grape" size="lg">{film.original_title}</Text>
+                      <Group style={{ dispaly: "flex", flexDirection: "column", alignItems: "start", gap: "0"}}>
+                          <Text fw={700} c="#9854F6" size="lg">{film.original_title}</Text>
                           <Text c="gray" size="s" fw={500}>{year}</Text>
                           <Group>
                               <Group key={1}>
@@ -126,7 +126,7 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                         size="lg" 
                         count={1}
                         value={rating > 0 ? 1 : 0} 
-                        color='grape' 
+                        color='#9854F6' 
                     />
                     { rating > 0 &&
                         <Text c="dark" fw={700}>{rating}</Text>
