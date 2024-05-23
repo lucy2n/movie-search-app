@@ -6,13 +6,12 @@ import no_bg from '../../images/no-bg.png'
 import { CardSize } from './constants';
 import clsx from 'clsx';
 import { getImageUrl } from '../../utils/utils';
-import { IMovieModel } from '@/types/movie';
+import { IMovieDetailsModel, IMovieModel } from '@/types/movie';
 import { useDisclosure } from '@mantine/hooks';
 import RateModal from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
-import { getGenres } from '@/utils/api';
 
-export default function MovieCard({film, size} : { film: IMovieModel | null, size: string }) {
+export default function MovieCard({film, genres, size} : { film: IMovieModel | IMovieDetailsModel, genres: string[], size: string }) {
 
     const { height, width } = useViewportSize();
 
@@ -20,7 +19,6 @@ export default function MovieCard({film, size} : { film: IMovieModel | null, siz
     const year = new Date(film.release_date).getFullYear();
 
     const [rating, setRating] = useState<number>(0);
-    const [genres, setGenres] = useState<string[]>([]);
 
     const textStyle = width > 1200 && size == 'big' ? `${style.point__text}` : '' ;
 
@@ -35,27 +33,7 @@ export default function MovieCard({film, size} : { film: IMovieModel | null, siz
 
     useEffect(() => {
         getRating();
-
-        if (film.genres == undefined) {
-            getGenres()
-            .then(res => {
-                let arr = res.genres;
-                setGenres(film.genre_ids?.map(id => {
-                    return arr.filter(item => item.id === id)[0].name
-                }))
-            })
-        } else {
-            setGenres(film.genres.map((g) => g.name))
-        }
     }, []);
-
-    const setupMovie = () => {
-        if (film != null) {
-
-        } else {
-
-        }
-    };
 
     useEffect(() => {
         getRating()
@@ -63,7 +41,7 @@ export default function MovieCard({film, size} : { film: IMovieModel | null, siz
 
   return (
     <>
-    <RateModal opened={opened} close={close} film={film}/>
+    <RateModal opened={opened} close={close} film={film} updateRating={getRating}/>
         <Paper
           className={clsx(
               style.main,

@@ -2,7 +2,7 @@ import { Divider, Modal, Rating, Text, Button } from "@mantine/core"
 import style from './rate-modal.module.css';
 import { useState, useEffect } from "react";
 
-export default function RateModal ({opened, close, film}) {
+export default function RateModal ({opened, close, film, updateRating}) {
     const [rating, setRating] = useState(0);
 
     useEffect(() => {
@@ -12,9 +12,9 @@ export default function RateModal ({opened, close, film}) {
         }
     }, [film.id]);
 
-
     const addRating = () => {
         localStorage.setItem(`movie-rating-${film.id}`, rating + '');
+        updateRating();
         close()
     };
 
@@ -23,7 +23,6 @@ export default function RateModal ({opened, close, film}) {
         localStorage.removeItem(`movie-rating-${film.id}`);
         close()
     };
-
 
     return (
         <Modal radius={10} opened={opened} onClose={close} title="Your rating" centered>
