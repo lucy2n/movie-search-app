@@ -29,8 +29,7 @@ export default function AboutMovie ({film}) {
                         Trailer
                     </Title>
                     <iframe
-                        width="600"
-                        height="380"
+                        className={style.iframe}
                         src={`https://www.youtube.com/embed/${video.key}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

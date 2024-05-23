@@ -15,8 +15,6 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
 
     const image = film.poster_path !== undefined ? getImageUrl(film.poster_path) : no_bg;
     const year = new Date(film.release_date).getFullYear();
-    const imageWidth = size === CardSize.big ? 250 : 119;
-    const imageHeight = size === CardSize.big ? 353 : 170;
 
     const [rating, setRating] = useState<number>(0);
     const [genres, setGenres] = useState<string[]>([]);
@@ -66,9 +64,8 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                   style[`container_${size}`]
               )}>
                 <Image
+                    className={style[`image_${size}`]}
                     src={image}
-                    height={imageHeight}
-                    width={imageWidth}
                     alt={film.original_title}
                 />
 
@@ -77,13 +74,13 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                     href={`/movies/${film.id}`}
                     className={style.link}
                 >  
-                  <Group
+                    <Group
                       className={clsx(
                           style.info,
                           style[`info_${size}`]
                       )}
-                  >
-                      <Group style={{ dispaly: "flex", flexDirection: "column", alignItems: "start", gap: "0"}}>
+                    > 
+                    <Group className={style.desc}>
                           <Text fw={700} c="#9854F6" size="lg">{film.original_title}</Text>
                           <Text c="gray" size="s" fw={500}>{year}</Text>
                           <Group>
@@ -94,30 +91,32 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                               <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
                           </Group>
                       </Group>
-                      <Group className={style.desc}>
+                      <div className={style.desc}>
                           {size === CardSize.big ? (
-                              <><Group className={style.point}>
+                            <>
+                                <Group className={style.point}>
                                   <Text c="gray" size="s" >Duration</Text>
                                   <Text c="dark">{film.runtime}</Text>
-                              </Group>
-                              <Group className={style.point}>
+                                </Group>
+                                <Group className={style.point}>
                                       <Text c="gray" size="s" >Premiere</Text>
                                       <Text c="dark">December 6, 1999</Text>
                                 </Group>
                                 <Group className={style.point}>
                                       <Text c="gray" size="s" >Budget</Text>
                                       <Text c="dark">{film.budget}</Text>
-                                  </Group>
-                                  <Group className={style.point}>
+                                </Group>
+                                <Group className={style.point}>
                                       <Text c="gray" size="s" >Gross worldwide</Text>
                                       <Text c="dark">{film.revenue}</Text>
-                                  </Group></>
+                                </Group>
+                            </>
                           ) : <></>}
                           <Group className={style.point}>
                                 <Text c="gray" size="s">Genres</Text>
                                 <Text className={style.genres} c="dark">{genres?.join(', ')}</Text>
                           </Group>
-                      </Group>
+                      </div>
                   </Group>
                 </Link>
                 <Group className={style.rating}>

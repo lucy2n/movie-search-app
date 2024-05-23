@@ -25,6 +25,12 @@
     background-size: contain;
 }
 
+.iframe {
+    width: 500px;
+    height: 280px;
+    border-radius: 9px
+}
+
 
 @media screen and (max-width: 1200px) {
     .main {
@@ -35,5 +41,12 @@
 @media screen and (max-width: 1080px) {
     .main {
         max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .iframe {
+        max-width: 300px;
+        max-height: 180px;
     }
 }

@@ -52,6 +52,7 @@ export default function Movies () {
             </Group>
             <MovieList films={films}/>
             <Pagination
+                className={style.pagination}
                 total={Math.min(3, pageNumber ?? 3)}
                 onChange={updatePage}
             />
