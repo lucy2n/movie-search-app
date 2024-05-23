@@ -47,3 +47,5 @@ const getSortTypeParam = (sortType: string): string => {
             return 'popularity.desc'
     }
 }
+
+//const mapMovieData = (movieData)

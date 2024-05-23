@@ -3,8 +3,9 @@ import style from './about-movie.module.css'
 import { getImageUrl } from "../../utils/utils";
 import { useEffect, useState } from "react";
 import { getVideo } from "@/utils/api";
+import { IMovieDetailsModel } from "@/types/movie";
 
-export default function AboutMovie ({film}) {
+export default function AboutMovie ({film}: {film: IMovieDetailsModel }) {
 
     const [video, setVideo] = useState(null)
      
@@ -53,9 +54,8 @@ export default function AboutMovie ({film}) {
                         <Group className={style.company} key={index}>
                             <Group className={style.image}>
                             <Image
-                                width={5}
-                                height={5}
                                 alt={company.name}
+                                fit="contain"
                                 src={getImageUrl(company.logo_path)}
                             />
                             </Group>

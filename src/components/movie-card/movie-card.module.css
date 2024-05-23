@@ -83,9 +83,13 @@
 }
 
 .point {
+    display: flex;
     flex-wrap: nowrap;
-    gap: 8px;
-    max-width: 320px;
+    width: 100%;
+}
+
+.point__text {
+    width: 140px
 }
 
 .genres {
@@ -110,24 +114,30 @@
         max-width: 700px;
     }
 
+
 }
 
 @media screen and (max-width: 1080px) {
-
-    .main_big {
-        max-width: 600px;
-    }
-
     .rating {
-        right: 5px;
+        right: 10px;
         top: 20px;
         gap: 1px;
     }
 
+    .main_big {
+        max-width: 530px;
+    }
+
     .info_big {
         margin-left: 0;
-        max-width: 300px;
+        max-width: 240px;
     }
+
+    .image_big {
+        width: 200px;
+        height: 350px
+    }
+
 }
 
 @media screen and (max-width: 620px) {
@@ -185,14 +195,20 @@
     }
 }
 
-/* @media screen and (max-width: 580px) {
+@media screen and (max-width: 400px) {
     .main_big {
-        height: 100px
+        max-width: 300px;
     }
+
+    .image_big {
+        width: 250px;
+        height: 400px;
+        background-size: contain;
+    }  
     
     .point {
         flex-wrap: wrap;
         gap: 8px;
         max-width: 170px;
     }
-} */
+}

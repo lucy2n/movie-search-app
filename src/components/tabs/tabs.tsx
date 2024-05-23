@@ -1,11 +1,17 @@
 import { Tabs } from "@mantine/core";
+import { useViewportSize } from '@mantine/hooks';
 import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react';
 import classes from './tabs.module.css';
 import Link from "next/link";
 
 export default function MenuTabs () {
+
+  const { height, width } = useViewportSize();
+
+  const orientation = width > 910 ? "vertical" : "horizontal";
+
     return (
-        <Tabs orientation="vertical" variant="unstyled" defaultValue="movies" classNames={classes}>
+        <Tabs orientation={orientation} variant="unstyled" defaultValue="movies" classNames={classes}>
           <Tabs.List grow>
             <Link
                href={'/'}

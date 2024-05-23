@@ -1,23 +1,28 @@
 import { Paper, Image, Text, Group, Rating } from '@mantine/core';
 import Link from 'next/link';
+import { useViewportSize } from '@mantine/hooks';
 import style from './movie-card.module.css'
 import no_bg from '../../images/no-bg.png'
 import { CardSize } from './constants';
 import clsx from 'clsx';
 import { getImageUrl } from '../../utils/utils';
-import { IMovie } from '@/types/movie';
+import { IMovieModel } from '@/types/movie';
 import { useDisclosure } from '@mantine/hooks';
 import RateModal from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
 import { getGenres } from '@/utils/api';
 
-export default function MovieCard({film, size} : { film: IMovie, size: string }) {
+export default function MovieCard({film, size} : { film: IMovieModel | null, size: string }) {
+
+    const { height, width } = useViewportSize();
 
     const image = film.poster_path !== undefined ? getImageUrl(film.poster_path) : no_bg;
     const year = new Date(film.release_date).getFullYear();
 
     const [rating, setRating] = useState<number>(0);
     const [genres, setGenres] = useState<string[]>([]);
+
+    const textStyle = width > 1200 && size == 'big' ? `${style.point__text}` : '' ;
 
     const [opened, { open, close }] = useDisclosure(false);
 
@@ -30,6 +35,7 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
 
     useEffect(() => {
         getRating();
+
         if (film.genres == undefined) {
             getGenres()
             .then(res => {
@@ -41,11 +47,19 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
         } else {
             setGenres(film.genres.map((g) => g.name))
         }
-    }, [])
+    }, []);
+
+    const setupMovie = () => {
+        if (film != null) {
+
+        } else {
+
+        }
+    };
 
     useEffect(() => {
         getRating()
-    }, [rating])
+    }, [rating]);
 
   return (
     <>
@@ -95,31 +109,36 @@ export default function MovieCard({film, size} : { film: IMovie, size: string })
                           {size === CardSize.big ? (
                             <>
                                 <Group className={style.point}>
-                                  <Text c="gray" size="s" >Duration</Text>
+                                  <Text className={textStyle} c="gray" size="s" >Duration</Text>
                                   <Text c="dark">{film.runtime}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text c="gray" size="s" >Premiere</Text>
-                                      <Text c="dark">December 6, 1999</Text>
+                                      <Text className={textStyle} c="gray" size="s" >Premiere</Text>
+                                      <Text c="dark">{film.release_date}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text c="gray" size="s" >Budget</Text>
+                                      <Text className={textStyle} c="gray" size="s" >Budget</Text>
                                       <Text c="dark">{film.budget}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text c="gray" size="s" >Gross worldwide</Text>
+                                      <Text className={textStyle} c="gray" size="s" >Gross worldwide</Text>
                                       <Text c="dark">{film.revenue}</Text>
                                 </Group>
                             </>
                           ) : <></>}
                           <Group className={style.point}>
-                                <Text c="gray" size="s">Genres</Text>
+                                <Text className={textStyle} c="gray" size="s">Genres</Text>
                                 <Text className={style.genres} c="dark">{genres?.join(', ')}</Text>
                           </Group>
                       </div>
                   </Group>
                 </Link>
-                <Group className={style.rating}>
+                <Group 
+                    className={clsx(
+                          style.rating,
+                          style[`rating_${size}`]
+                    )
+                }>
                     <Rating 
                         onClick={open} 
                         size="lg" 

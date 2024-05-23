@@ -10,3 +10,10 @@
     height: 100%;
     padding: 30px 60px
 }
+
+@media screen and (max-width: 910px) {
+    .main {
+        display: flex;
+        flex-direction: column
+    }
+}

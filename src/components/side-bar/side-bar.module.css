@@ -13,3 +13,14 @@
     display: flex;
     gap: 5px
 }
+
+@media screen and (max-width: 910px) {
+    .main {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }   
+}

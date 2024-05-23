@@ -1,13 +1,12 @@
-import { IMovie, IMovieResponse } from "@/types/movie";
+import { IGenresResponse, IMovieDetailsModel, IMovieModel, IMovieResponse } from "@/types/movie";
 import { base_url } from "./constants";
 import { getMoviesUrl } from "./utils";
-import { env } from "process";
 
 const options = {
 	method: 'GET',
 	headers: {
 	  accept: 'application/json',
-	  Authorization: `Bearer ${env.procces.TMDB_TOKEN}`
+	  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3Y2E5ZmMzYmY0ZDNkOGIyMWZhMDM5NmNiM2RlNDFkZSIsInN1YiI6IjY2NDVmNGIwMTg0YTQ2MzE3MjkxZDlhOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vLT8DM5qs-GIvi5N9gJbXa3WjR8q8ocmhP-gsHYf-uM'
 	}
   };
 
@@ -21,12 +20,12 @@ export const getMovies = async (filters?: MovieFilters, page?: number): Promise<
 	return checkResponse<IMovieResponse>(res);
 };
 
-export const getFilmInformation = async (id: number | string): Promise<IMovie> => {
+export const getFilmInformation = async (id: number | string): Promise<IMovieDetailsModel> => {
 	const res = await fetch(`${base_url}/movie/${id}?language=en-US`, options)
-	return checkResponse<IMovie>(res);
+	return checkResponse<IMovieDetailsModel>(res);
 }
 
-export const getGenres = async () => {
+export const getGenres = async (): Promise<IGenresResponse> => {
 	const res = await fetch(`${base_url}/genre/movie/list?language=en`, options)
 	return checkResponse(res);
 }
