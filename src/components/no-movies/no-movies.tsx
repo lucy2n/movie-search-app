@@ -1,9 +1,9 @@
 import NextImage from "next/image";
 import { Image, Text } from "@mantine/core";
-import style from './no-rated.module.css';
-import image from '../../images/search.svg'
+import style from './no-movies.module.css';
+import image from '../../assets/images/search.svg'
 
-export const NoRatedMovies = (): JSX.Element => {
+export const NoMovies = (): JSX.Element => {
     return (
         <div className={style.main}>
             <Image 
