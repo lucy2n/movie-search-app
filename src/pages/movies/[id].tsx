@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import MovieCard from "../../components/movie-card/movie-card";
+import { MovieCard } from "../../components/movie-card/movie-card";
 import { useState, useEffect } from "react";
 import { getFilmInformation } from "../../utils/api";
 import { CardSize } from "../../components/movie-card/constants";
-import AboutMovie from "../../components/about-movie/about-movie";
-import MovieBreadCrumbs from "@/components/bread-crumbs/bread-crumbs";
+import { AboutMovie } from "../../components/about-movie/about-movie";
+import { MovieBreadCrumbs } from "@/components/bread-crumbs/bread-crumbs";
 import style from './movie-id.module.css'
 import { IMovieDetailsModel } from "@/types/movie";
 
-export default function MovieDescriptionSection() {
+export const MovieDescriptionSection = (): JSX.Element | null => {
 
     const router = useRouter();
     const { id } = router.query;

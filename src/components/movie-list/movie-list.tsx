@@ -1,4 +1,4 @@
-import MovieCard from '../movie-card/movie-card';
+import { MovieCard } from '../movie-card/movie-card';
 import style from './movie-list.module.css'
 import { CardSize } from '../movie-card/constants';
 import { IMovieDetailsModel, IMovieModel } from '@/types/movie';
@@ -7,8 +7,7 @@ export interface IMovieGenresDict {
     [key: string]: string[]
 }
 
-export default function MovieList ({films, genresDict}: {films: IMovieModel[] | IMovieDetailsModel[], genresDict: IMovieGenresDict}) {
-
+export const MovieList = ({films, genresDict}: {films: IMovieModel[] | IMovieDetailsModel[], genresDict: IMovieGenresDict}): JSX.Element => {
     return (
         <div className={style.main}>
         {films && films.map((film) => {

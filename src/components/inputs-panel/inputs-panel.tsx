@@ -1,22 +1,22 @@
 import { Button } from '@mantine/core';
 import style from './inputs-panel.module.css'
-import GenresInput from '../genres-input/genres-input';
-import YearInput from '../year-input/year-input';
-import RaitingInput from '../raiting-input/raiting-input';
-import SortBy from '../sort-by/sort-by';
+import { YearInput } from '../year-input/year-input';
+import { RaitingInput } from '../raiting-input/raiting-input';
+import { SortBy } from '../sort-by/sort-by';
 import { FiltersFormProvider, useFiltersForm } from './form-context';
 import { useEffect } from 'react';
 import { MovieFilters } from '@/utils/api';
+import { GenresInput } from '../genres-input/genres-input';
 
-export function InputsPanel({fetchMovies}) {
+export const InputsPanel = ({ fetchMovies }: { fetchMovies: (filters: MovieFilters) => void }): JSX.Element => {
 
   const form = useFiltersForm({
     initialValues: {
-      genres: null,
-      year: null,
-      raitingBottom: null,
-      raitingTop: null,
-      sortType: null
+      genres: [],
+      year: '',
+      raitingBottom: '',
+      raitingTop: '',
+      sortType: ''
     }
   });
 
@@ -32,7 +32,7 @@ export function InputsPanel({fetchMovies}) {
       ratingTo: form.values.raitingTop,
       sortType: form.values.sortType
     }
-    fetchMovies(filters)
+    fetchMovies(filters);
   }
 
   return (

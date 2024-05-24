@@ -2,22 +2,21 @@ import { Paper, Title, Divider, Text, Group, Image } from "@mantine/core";
 import style from './about-movie.module.css'
 import { getImageUrl } from "../../utils/utils";
 import { useEffect, useState } from "react";
-import { getVideo } from "@/utils/api";
+import { getVideo, IVideoModel } from "@/utils/api";
 import { IMovieDetailsModel } from "@/types/movie";
 
-export default function AboutMovie ({film}: {film: IMovieDetailsModel }) {
+export const AboutMovie = ({ film }: { film: IMovieDetailsModel }): JSX.Element => {
 
-    const [video, setVideo] = useState(null)
+    const [video, setVideo] = useState<IVideoModel | null>(null);
      
     useEffect(() => {
         getVideo(film.id)
         .then(res => {
             setVideo(res.results[0])
-        })
-    })
+        });
+    });
 
     return (
-        ( video && 
             <Paper
             className={style.main}
             shadow="xs" 
@@ -65,7 +64,5 @@ export default function AboutMovie ({film}: {film: IMovieDetailsModel }) {
                 </div>
             </div>
         </Paper>
-
-        )
     )
 }

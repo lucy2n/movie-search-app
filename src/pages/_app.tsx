@@ -5,8 +5,7 @@ import '@mantine/core/styles.css';
 import type { AppProps } from 'next/app';
 import { MantineProvider, MantineColorsTuple, MantineThemeOverride } from '@mantine/core';
 import Head from "next/head";
-import SideBar from '@/components/side-bar/side-bar';
-import Layout from '@/components/layout/layout';
+import { Layout } from '@/components/layout/layout';
 
 const myColor: MantineColorsTuple = [
     '#F2ECFA',

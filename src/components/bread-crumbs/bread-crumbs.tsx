@@ -1,6 +1,6 @@
 import { Breadcrumbs, Anchor } from '@mantine/core';
 
-export default function MovieBreadCrumbs({ name }: { name: string }) {
+export const MovieBreadCrumbs = ({ name }: { name: string }): JSX.Element => {
   
   const items = [
     { title: 'Movies', href: '/' },

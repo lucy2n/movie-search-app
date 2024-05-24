@@ -2,9 +2,9 @@ import NextImage from "next/image";
 import { Image, Text, Button } from "@mantine/core";
 import Link from "next/link";
 import style from './no-rated.module.css';
-import image from '../../images/pic.svg'
+import image from '../../assets/images/pic.svg'
 
-export default function NoRatedMovies () {
+export const NoRatedMovies = (): JSX.Element => {
     return (
         <div className={style.main}>
             <Image 
@@ -18,7 +18,7 @@ export default function NoRatedMovies () {
                 c="dark"
                 className={style.text}
             >
-                You haven't rated any films yet
+                You haven&#39;t rated any films yet
             </Text>
             <Link
                href={'/'}

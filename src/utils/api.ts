@@ -30,16 +30,25 @@ export const getGenres = async (): Promise<IGenresResponse> => {
 	return checkResponse(res);
 }
 
-export const getVideo = async (id: string | number) => {
+export const getVideo = async (id: string | number): Promise<IVideoResponse> => {
 	const res = await fetch(`${base_url}/movie/${id}/videos`, options)
 	return checkResponse(res);
 }
 
 export interface MovieFilters {
-	genres?: string[],
-	year?: string,
-	ratingFrom?: string,
-	ratingTo?: string,
-	sortType?: string,
-	page?: string
+	genres?: string[];
+	year?: string;
+	ratingFrom?: string;
+	ratingTo?: string;
+	sortType?: string;
+	page?: string;
+}
+
+export interface IVideoResponse {
+	results: IVideoModel[]
+}
+
+export interface IVideoModel {
+	key: string;
+	name: string
 }

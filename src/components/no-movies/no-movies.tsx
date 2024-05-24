@@ -3,7 +3,7 @@ import { Image, Text } from "@mantine/core";
 import style from './no-rated.module.css';
 import image from '../../images/search.svg'
 
-export default function NoRatedMovies () {
+export const NoRatedMovies = (): JSX.Element => {
     return (
         <div className={style.main}>
             <Image 
@@ -17,7 +17,7 @@ export default function NoRatedMovies () {
                 c="dark"
                 className={style.text}
             >
-                We don't have such movies, look for another one
+                We don&#39;t have such movies, look for another one
             </Text>
         </div>
     )

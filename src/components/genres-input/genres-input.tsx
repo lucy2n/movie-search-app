@@ -5,7 +5,7 @@ import style from './genres-input.module.css';
 import { IGenres } from './type';
 import { useFiltersFormContext } from '../inputs-panel/form-context';
 
-export default function GenresInput() {
+export const GenresInput = (): JSX.Element => {
   const [value, setValue] = useState<string[]>([]);
   const [genreIDs, setGenreIDs] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);

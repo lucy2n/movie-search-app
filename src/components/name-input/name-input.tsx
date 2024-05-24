@@ -1,10 +1,9 @@
 import { Button, TextInput, rem } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import style from './name-input.module.css'
-import { useFiltersFormContext } from '../inputs-panel/form-context';
 import { useRatedFormContext } from '@/pages/rated-movies/rated-form-context';
 
-export default function NameInput() {
+export const NameInput = (): JSX.Element => {
     const icon = <IconSearch style={{ width: rem(16), height: rem(16) }} />;
     const form = useRatedFormContext();
 

@@ -2,26 +2,35 @@ import { Divider, Modal, Rating, Text, Button } from "@mantine/core"
 import style from './rate-modal.module.css';
 import { useState, useEffect } from "react";
 
-export default function RateModal ({opened, close, film, updateRating}) {
+interface RateModalProps {
+    opened: boolean;
+    close: () => void;
+    filmId: string;
+    filmTitle: string;
+    updateRating: () => void;
+}
+
+export const RateModal = ({ opened, close, filmId, filmTitle, updateRating }: RateModalProps): JSX.Element => {
     const [rating, setRating] = useState(0);
 
     useEffect(() => {
-        const savedRating = localStorage.getItem(`movie-rating-${film.id}`);
+        const savedRating = localStorage.getItem(`movie-rating-${filmId}`);
         if (savedRating) {
           setRating(parseInt(savedRating, 10));
         }
-    }, [film.id]);
+    }, [filmId]);
 
     const addRating = () => {
-        localStorage.setItem(`movie-rating-${film.id}`, rating + '');
+        localStorage.setItem(`movie-rating-${filmId}`, rating + '');
         updateRating();
-        close()
+        close();
     };
 
     const deleteRating = () => {
-        setRating(0)
-        localStorage.removeItem(`movie-rating-${film.id}`);
-        close()
+        setRating(0);
+        localStorage.removeItem(`movie-rating-${filmId}`);
+        updateRating();
+        close();
     };
 
     return (
@@ -29,7 +38,7 @@ export default function RateModal ({opened, close, film, updateRating}) {
             <Divider my="xs" />
             <div className={style.modal}>
                 <Text c="dark" fw={700}>
-                    {film.original_title}
+                    {filmTitle}
                 </Text>
                 <Rating
                     className={style.modal__rating}

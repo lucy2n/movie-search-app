@@ -1,11 +1,11 @@
 import { createFormContext } from '@mantine/form';
 
 interface FiltersFormValues {
-    genres: string[] | null;
-    year: string | null;
-    raitingBottom: string | null;
-    raitingTop: string | null;
-    sortType: string | null;
+    genres: string[];
+    year: string;
+    raitingBottom: string;
+    raitingTop: string;
+    sortType: string;
 }
 
 export const [FiltersFormProvider, useFiltersFormContext, useFiltersForm] = createFormContext<FiltersFormValues>();

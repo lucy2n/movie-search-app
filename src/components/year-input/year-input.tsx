@@ -2,7 +2,7 @@ import { Select } from "@mantine/core";
 import style from './year-input.module.css'
 import { useFiltersFormContext } from "../inputs-panel/form-context";
 
-export default function YearInput() {
+export const YearInput = (): JSX.Element => {
     const form = useFiltersFormContext();
 
     function compareNumbers(a: string, b: string) {

@@ -3,7 +3,7 @@ import style from './raiting-input.module.css'
 import { useState } from "react";
 import { useFiltersFormContext } from "../inputs-panel/form-context";
 
-export default function RaitingInput () {
+export const RaitingInput = (): JSX.Element => {
 
     const raiting = Array.from({length: 10}, (_, i) => i + 1 + '');
     const [bottomValue, setBottomValue] = useState<string>('');

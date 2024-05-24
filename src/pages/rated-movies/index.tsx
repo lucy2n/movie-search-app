@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Pagination, Title } from '@mantine/core';
-import { getFilmInformation, getGenres } from '@/utils/api';
-import MovieList, { IMovieGenresDict } from '@/components/movie-list/movie-list';
-import { IMovieDetailsModel, IMovieModel } from '@/types/movie';
-import NoRatedMovies from '@/components/no-rated/no-rated';
-import NameInput from '@/components/name-input/name-input';
+import { Loader, Pagination, Title } from '@mantine/core';
+import { getFilmInformation } from '@/utils/api';
+import { MovieList, IMovieGenresDict } from '@/components/movie-list/movie-list';
+import { IMovieDetailsModel } from '@/types/movie';
+import { NoRatedMovies } from '@/components/no-rated/no-rated';
+import { NameInput } from '@/components/name-input/name-input';
 import { RatedFormProvider, useRatedForm } from './rated-form-context';
 import style from './rated-movies.module.css';
 
-const RatedMovies = () => {
+const RatedMovies = (): JSX.Element => {
   const [ratedMoviesId, setRatedMoviesId] = useState<string[]>([]);
   const [ratedMovies, setRatedMovies] = useState<IMovieDetailsModel[]>([]);
   const [filter, setFilter] = useState<string>('');
@@ -20,6 +20,7 @@ const RatedMovies = () => {
   });
 
   useEffect(() => {
+    localStorage.setItem('activeTab', 'rated');
     const movies = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -36,13 +37,13 @@ const RatedMovies = () => {
   }, [ratedMoviesId])
 
   const fetchRatedMovies = () => {
-    setRatedMovies([])
+    setRatedMovies([]);
     ratedMoviesId.forEach(id => {
       getFilmInformation(id)
       .then(res => {
         setRatedMovies((ratedMovies) => [...ratedMovies, res])
       })
-    })
+    });
   }
 
   const setupupGenresDict = (films: IMovieDetailsModel[]): IMovieGenresDict => {
@@ -54,11 +55,11 @@ const RatedMovies = () => {
   }
 
   const handleSubmit = (values: typeof form.values) => {
-    setFilter(values.name ?? '')
+    setFilter(values.name ?? '');
   };
 
   const filteredRatedMovies = (): IMovieDetailsModel[] => {
-    return ratedMovies.filter((film) => filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true)
+    return ratedMovies.filter((film) => filter !== '' || filter !== null ? film.original_title.toLowerCase().includes(filter.toLowerCase()) : true);
   }
 
   return (
@@ -71,17 +72,16 @@ const RatedMovies = () => {
                 <NameInput />
               </form>
             </RatedFormProvider>
-            <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())}/>
+            <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())} />
+            <Pagination
+                className={style.pagination}
+                total={3}
+            />
           </>
         )
           : 
           <NoRatedMovies />
         }
-        <Pagination
-                className={style.pagination}
-                total={3}
-                // total={Math.min(3, pageNumber ?? 3)}
-            />
     </div>
   );
 };

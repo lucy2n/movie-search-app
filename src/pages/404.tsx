@@ -1,10 +1,10 @@
 import { Button, Container, Image, Text } from "@mantine/core";
 import NextImage from 'next/image';
-import image from '../images/404.svg'
+import image from '../assets/images/404.svg'
 import style from './404.module.css'
 import Link from "next/link";
 
-export default function Custom404() {
+export const Custom404 = (): JSX.Element => {
     return (
         <Container className={style.container}>
             <div className={style.main}>
@@ -14,7 +14,7 @@ export default function Custom404() {
                     src={image}
                     className={style.image}
                 />
-                <Text fw={700} >We can't find the page you are looking for</Text>
+                <Text fw={700} >We can&#39;t find the page you are looking for</Text>
                 <Link  
                     href='/'
                     className={style.link}

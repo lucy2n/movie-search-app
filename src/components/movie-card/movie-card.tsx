@@ -1,21 +1,29 @@
-import { Paper, Image, Text, Group, Rating } from '@mantine/core';
+import { Paper, Image, Text, Group, Rating, Loader } from '@mantine/core';
 import Link from 'next/link';
+import NextImage from 'next/image'
 import { useViewportSize } from '@mantine/hooks';
 import style from './movie-card.module.css'
-import no_bg from '../../images/no-bg.png'
+import no_bg from '../../assets/images/no-bg.png'
 import { CardSize } from './constants';
 import clsx from 'clsx';
 import { getImageUrl } from '../../utils/utils';
 import { IMovieDetailsModel, IMovieModel } from '@/types/movie';
 import { useDisclosure } from '@mantine/hooks';
-import RateModal from '../rate-modal/rate-modal';
+import { RateModal } from '../rate-modal/rate-modal';
 import { useEffect, useState } from 'react';
+import { convertMinutesToHoursAndMinutes, formatCurrency, formatDate } from '@/utils/date-time';
 
-export default function MovieCard({film, genres, size} : { film: IMovieModel | IMovieDetailsModel, genres: string[], size: string }) {
+interface IMovieCardProps {
+    film: IMovieModel | IMovieDetailsModel;
+    genres: string[];
+    size: string;
+}
+
+export const MovieCard = ({film, genres, size} : IMovieCardProps): JSX.Element => {
 
     const { height, width } = useViewportSize();
 
-    const image = film.poster_path !== undefined ? getImageUrl(film.poster_path) : no_bg;
+    const image = film.poster_path !== null ? getImageUrl(film.poster_path) : no_bg;
     const year = new Date(film.release_date).getFullYear();
 
     const [rating, setRating] = useState<number>(0);
@@ -28,6 +36,8 @@ export default function MovieCard({film, genres, size} : { film: IMovieModel | I
         const savedRating = localStorage.getItem(`movie-rating-${film.id}`);
         if (savedRating) {
           setRating(parseInt(savedRating, 10));
+        } else {
+            setRating(0);
         }
     }
 
@@ -41,7 +51,7 @@ export default function MovieCard({film, genres, size} : { film: IMovieModel | I
 
   return (
     <>
-    <RateModal opened={opened} close={close} film={film} updateRating={getRating}/>
+    <RateModal opened={opened} close={close} filmId={film.id} filmTitle={film.original_title} updateRating={getRating}/>
         <Paper
           className={clsx(
               style.main,
@@ -50,71 +60,80 @@ export default function MovieCard({film, genres, size} : { film: IMovieModel | I
           shadow="xs"
           p="l"
           radius="20px"
-        >
+        > 
             <div className={clsx(
-                  style.container,
-                  style[`container_${size}`]
-              )}>
-                <Image
-                    className={style[`image_${size}`]}
-                    src={image}
-                    alt={film.original_title}
-                />
-
+                style.container,
+                style[`container_${size}`]
+            )}>
+                {film.poster_path !== null ? (
+                        <Image
+                            className={style[`image_${size}`]}
+                            src={image}
+                            alt={film.original_title}
+                        />
+                    ) : (
+                        <Image
+                            className={style[`image_${size}`]}
+                            component={NextImage}
+                            src={no_bg}
+                            alt={film.original_title}
+                        />
+                    )
+                }
                 <Link 
                     key={film.id} 
                     href={`/movies/${film.id}`}
                     className={style.link}
                 >  
                     <Group
-                      className={clsx(
-                          style.info,
-                          style[`info_${size}`]
-                      )}
+                    className={clsx(
+                        style.info,
+                        style[`info_${size}`]
+                    )}
                     > 
                     <Group className={style.desc}>
-                          <Text fw={700} c="#9854F6" size="lg">{film.original_title}</Text>
-                          <Text c="gray" size="s" fw={500}>{year}</Text>
-                          <Group>
-                              <Group key={1}>
-                                  <Rating size="lg" count={1} defaultValue={1} />
-                                  <Text size="s" fw={600} c="dark">{film.vote_average}</Text>
-                              </Group>
-                              <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
-                          </Group>
-                      </Group>
-                      <div className={style.desc}>
-                          {size === CardSize.big ? (
+                        <Text fw={700} c="#9854F6" size="lg">{film.original_title}</Text>
+                        <Text c="gray" size="s" fw={500}>{Number.isNaN(year) ? 'no information' : year}</Text>
+                        <Group>
+                            <Group key={1}>
+                                <Rating size="lg" count={1} defaultValue={1} />
+                                <Text size="s" fw={600} c="dark">{Math.round(+film.vote_average * 10) / 10}</Text>
+                            </Group>
+                            <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
+                        </Group>
+                    </Group>
+                    <div className={style.desc}>
+                        {size === CardSize.big ? (
                             <>
                                 <Group className={style.point}>
-                                  <Text className={textStyle} c="gray" size="s" >Duration</Text>
-                                  <Text c="dark">{film.runtime}</Text>
+                                <Text className={textStyle} c="gray" size="s" >Duration</Text>
+                                <Text c="dark">{convertMinutesToHoursAndMinutes(+film.runtime)}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text className={textStyle} c="gray" size="s" >Premiere</Text>
-                                      <Text c="dark">{film.release_date}</Text>
+                                    <Text className={textStyle} c="gray" size="s" >Premiere</Text>
+                                    <Text c="dark">{formatDate(film.release_date)}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text className={textStyle} c="gray" size="s" >Budget</Text>
-                                      <Text c="dark">{film.budget}</Text>
+                                    <Text className={textStyle} c="gray" size="s" >Budget</Text>
+                                    <Text c="dark">{formatCurrency(+film.budget)}</Text>
                                 </Group>
                                 <Group className={style.point}>
-                                      <Text className={textStyle} c="gray" size="s" >Gross worldwide</Text>
-                                      <Text c="dark">{film.revenue}</Text>
+                                    <Text className={textStyle} c="gray" size="s" >Gross worldwide</Text>
+                                    <Text c="dark">{formatCurrency(+film.revenue)}</Text>
                                 </Group>
                             </>
-                          ) : <></>}
-                          <Group className={style.point}>
+                        ) : <></>}
+                        <Group className={style.point}>
                                 <Text className={textStyle} c="gray" size="s">Genres</Text>
                                 <Text className={style.genres} c="dark">{genres?.join(', ')}</Text>
-                          </Group>
-                      </div>
-                  </Group>
+                        </Group>
+                    </div>
+                </Group>
                 </Link>
                 <Group 
                     className={clsx(
-                          style.rating,
-                          style[`rating_${size}`]
+                        style.rating,
+                        style[`rating_${size}`]
                     )
                 }>
                     <Rating 
@@ -128,7 +147,7 @@ export default function MovieCard({film, genres, size} : { film: IMovieModel | I
                         <Text c="dark" fw={700}>{rating}</Text>
                     }
                 </Group>  
-              </div>
+            </div>
           </Paper></>
   );
 }

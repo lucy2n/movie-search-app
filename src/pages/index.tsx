@@ -1,13 +1,13 @@
 import { Group, Pagination, Title } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { InputsPanel } from "../components/inputs-panel/inputs-panel";
-import MovieList, { IMovieGenresDict } from "../components/movie-list/movie-list";
+import { MovieList, IMovieGenresDict } from "../components/movie-list/movie-list";
 import style from './movies.module.css'
 import { IMovieModel } from "@/types/movie";
 import { getGenres, getMovies, MovieFilters } from "@/utils/api";
 import { IGenres } from "@/components/genres-input/type";
 
-export default function Movies () {
+export const Movies = (): JSX.Element => {
     const [films, setFilms] = useState<IMovieModel[]>([]);
     const [filters, setFilters] = useState<MovieFilters>();
     const [page, setPage] = useState<number>(1);
@@ -15,6 +15,7 @@ export default function Movies () {
 
     useEffect(() => {
         fetchMovies()
+        localStorage.setItem('activeTab', 'movies');
     }, [])
 
     useEffect(() => {
@@ -44,6 +45,9 @@ export default function Movies () {
     }, []);
   
     const getGenresNames = (genres_id: string[]): string[] => {
+        if (genres_id == undefined) {
+            return []
+        }
         const genresNames = genres_id.map(id => {
             return genres.find(item => item.id === +id)?.name ?? ""
         })
@@ -67,6 +71,11 @@ export default function Movies () {
                 <InputsPanel fetchMovies={fetchMovies}/>
             </Group>
             <MovieList films={films} genresDict={setupupGenresDict()}/>
+            <Pagination
+                className={style.pagination}
+                total={Math.min(3, pageNumber ?? 3)}
+                onChange={updatePage}
+            />
         </Group>
     )
 }

@@ -3,7 +3,7 @@ import style from './sort-by.module.css';
 import { Sort } from "./constants";
 import { useFiltersFormContext } from "../inputs-panel/form-context";
 
-export default function SortBy () {
+export const SortBy = (): JSX.Element => {
     const form = useFiltersFormContext();
 
     return (

@@ -1,11 +1,10 @@
 import { Title, Image } from "@mantine/core";
 import style from './side-bar.module.css';
 import NextImage from 'next/image';
-import side from '../../images/side.svg'
-import MenuTabs from "../tabs/tabs";
+import side from '../../assets/images/side.svg'
+import { MenuTabs } from "../tabs/tabs";
 
-export default function SideBar () {
-
+export const SideBar = (): JSX.Element => {
     return(
             <div className={style.main}>
             <div className={style.text}>
