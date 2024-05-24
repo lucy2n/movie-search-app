@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app';
 import { MantineProvider, MantineColorsTuple, MantineThemeOverride } from '@mantine/core';
 import Head from "next/head";
 import { Layout } from '@/components/layout/layout';
+import { useRouter } from 'next/router';
 
 const myColor: MantineColorsTuple = [
     '#F2ECFA',
@@ -29,19 +30,30 @@ const theme: MantineThemeOverride = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
+
+  const router = useRouter();
+
+  const is404 = router.pathname == '/404';
+  
   return (
     <MantineProvider theme={theme}>
        <Head>
-        <title>Mantine Template</title>
+        <title>Movie Search</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      { is404 ?
+        <Layout page='404'>
+           <Component {...pageProps} /> 
+        </Layout>
+        :
+        <Layout page='page'>
+          <Component {...pageProps} />
+        </Layout>
+      }
     </MantineProvider>
   );
 }

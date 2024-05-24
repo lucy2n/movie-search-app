@@ -3,10 +3,14 @@ import style from './side-bar.module.css';
 import NextImage from 'next/image';
 import side from '../../assets/images/side.svg'
 import { MenuTabs } from "../tabs/tabs";
+import clsx from "clsx";
 
-export const SideBar = (): JSX.Element => {
+export const SideBar = ({ page }: { page: string }): JSX.Element => {
     return(
-            <div className={style.main}>
+            <div  className={clsx(
+                style.main,
+                style[`main_${page}`]
+            )} >
             <div className={style.text}>
                 <Image
                     component={NextImage}
@@ -18,7 +22,7 @@ export const SideBar = (): JSX.Element => {
                 />
                 <Title order={3} style={{color: '#9854F6'}}>ArrowFlicks</Title>
             </div>
-            <MenuTabs />
+            {page === '404' ? <></> :  <MenuTabs />}
             </div>
     )
 }

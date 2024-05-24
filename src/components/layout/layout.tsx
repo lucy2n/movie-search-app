@@ -1,11 +1,11 @@
 import { SideBar } from "../side-bar/side-bar";
 import style from './layout.module.css'
 
-export const Layout = ({ children }: { children: JSX.Element }): JSX.Element => {
+export const Layout = ({ children, page }: { children: JSX.Element, page: string }): JSX.Element => {
     return (
         <div className={style.main}>
             <aside>
-                <SideBar />
+                <SideBar page={page}/>
             </aside>
             <main className={style.section}>
                 {children}

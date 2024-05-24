@@ -4,9 +4,16 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    background-color: #F2EBF9;
     padding: 20px;
     gap: 50px
+}
+
+.main_404 {
+    background-color: none;
+}
+
+.main_page {
+    background-color: #F2EBF9;
 }
 
 .text {
