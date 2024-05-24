@@ -7,22 +7,28 @@ import { AboutMovie } from "../../components/about-movie/about-movie";
 import { MovieBreadCrumbs } from "@/components/bread-crumbs/bread-crumbs";
 import style from './movie-id.module.css'
 import { IMovieDetailsModel } from "@/types/movie";
+import { Loader } from "@mantine/core";
 
 const MovieDescriptionSection = (): JSX.Element | null => {
 
     const router = useRouter();
     const { id } = router.query;
     const [film, setFilm] = useState<IMovieDetailsModel | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setLoading(true);
         getFilmInformation(id as string)
         .then((res) => {
+            setLoading(false);
             setFilm(res)
-        })
+        });
     }, [id])
 
     return (
-        film && 
+        loading ?
+        <Loader size="xl" /> :
+        film &&
         <div className={style.main}>
             <MovieBreadCrumbs name={film.original_title} />
             <MovieCard

@@ -12,6 +12,7 @@ const RatedMovies = (): JSX.Element => {
   const [ratedMoviesId, setRatedMoviesId] = useState<string[]>([]);
   const [ratedMovies, setRatedMovies] = useState<IMovieDetailsModel[]>([]);
   const [filter, setFilter] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const form = useRatedForm({ 
     initialValues: {
@@ -20,6 +21,7 @@ const RatedMovies = (): JSX.Element => {
   });
 
   useEffect(() => {
+    setLoading(true);
     localStorage.setItem('activeTab', 'rated');
     const movies = [];
     for (let i = 0; i < localStorage.length; i++) {
@@ -29,6 +31,7 @@ const RatedMovies = (): JSX.Element => {
         movies.push(movieId);
       }
     }
+    setLoading(false);
     setRatedMoviesId(movies);
   }, []);
 
@@ -72,11 +75,16 @@ const RatedMovies = (): JSX.Element => {
                 <NameInput />
               </form>
             </RatedFormProvider>
-            <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())} />
-            <Pagination
-                className={style.pagination}
-                total={3}
-            />
+            { loading ?
+              <Loader size="xl" /> :
+              <>
+                <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())} />
+                <Pagination
+                    className={style.pagination}
+                    total={3}
+                />
+              </>
+            }
           </>
         )
           : 

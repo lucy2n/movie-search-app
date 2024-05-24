@@ -1,4 +1,4 @@
-import { Group, Pagination, Title } from "@mantine/core";
+import { Loader, Group, Pagination, Title } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { InputsPanel } from "../components/inputs-panel/inputs-panel";
 import { MovieList, IMovieGenresDict } from "../components/movie-list/movie-list";
@@ -12,6 +12,7 @@ const Movies = (): JSX.Element => {
     const [filters, setFilters] = useState<MovieFilters>();
     const [page, setPage] = useState<number>(1);
     const [pageNumber, setPageNumber] = useState<number>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         fetchMovies()
@@ -19,13 +20,13 @@ const Movies = (): JSX.Element => {
     }, [])
 
     useEffect(() => {
-        console.log('update triggered')
+        setLoading(true);
         getMovies(filters, page)
             .then((res) => {
-                console.log(res.total_pages)
+                setLoading(false);
                 setFilms(res.results)
                 setPageNumber(res.total_pages)
-            })
+            });
     }, [filters, page])
 
     const fetchMovies = (filters?: MovieFilters) => {
@@ -70,12 +71,18 @@ const Movies = (): JSX.Element => {
             <Group className={style.inputs}>
                 <InputsPanel fetchMovies={fetchMovies}/>
             </Group>
-            <MovieList films={films} genresDict={setupupGenresDict()}/>
-            <Pagination
-                className={style.pagination}
-                total={Math.min(3, pageNumber ?? 3)}
-                onChange={updatePage}
-            />
+            {
+                loading ? 
+                <Loader size="xl" /> :
+                <>
+                    <MovieList films={films} genresDict={setupupGenresDict()}/>
+                    <Pagination
+                        className={style.pagination}
+                        total={Math.min(3, pageNumber ?? 3)}
+                        onChange={updatePage}
+                    />
+                </>
+            }   
         </Group>
     )
 }
