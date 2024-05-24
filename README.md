@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Проект: Movie Search
+<img width="1440" alt="Снимок экрана 2024-05-24 в 23 57 22" src="https://github.com/lucy2n/movie-search-app/assets/117926370/345cc23a-48d6-4129-850c-79c5706b0be4">
+
+## Функциональность проекта и его описание:
+   * Сайт для поиска фильмом и просмотра информации о них <br>
+   * Здесь можно найти фильм по любому фильтру
+   * Можешь поставить фильму оценку
+
+## Используемые технологии: 
+   * HTML5
+   * CSS
+   * NextJs
+   * Mantine
+   * TS
+   * Webpack
+   * Взаимодействие с сервером через API-запросы
 
 ## Getting Started
 
