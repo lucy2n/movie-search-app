@@ -30,7 +30,7 @@ export const AboutMovie = ({ film }: { film: IMovieDetailsModel }): JSX.Element 
                     </Title>
                     <iframe
                         className={style.iframe}
-                        src={`https://www.youtube.com/embed/${video.key}`}
+                        src={`https://www.youtube.com/embed/${video?.key}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="Embedded youtube" />
