@@ -1,6 +1,5 @@
 import { Tabs } from "@mantine/core";
 import { useViewportSize } from '@mantine/hooks';
-import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react';
 import classes from './tabs.module.css';
 import Link from "next/link";
 

@@ -7,6 +7,10 @@
     gap: 40px
 }
 
+.pagination {
+    margin-bottom: 50px;
+}
+
 @media screen and (max-width: 910px) {
     .main {
         align-items: center;

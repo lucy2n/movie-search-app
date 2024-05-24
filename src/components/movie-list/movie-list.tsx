@@ -1,27 +1,13 @@
 import MovieCard from '../movie-card/movie-card';
 import style from './movie-list.module.css'
 import { CardSize } from '../movie-card/constants';
-import { IMovieModel } from '@/types/movie';
-import { useEffect, useState } from 'react';
-import { getGenres } from '@/utils/api';
-import { IGenres } from '../genres-input/type';
+import { IMovieDetailsModel, IMovieModel } from '@/types/movie';
 
+export interface IMovieGenresDict {
+    [key: string]: string[]
+}
 
-export default function MovieList ({films}: {films: IMovieModel[]}) {
-
-    const [genres, setGenres] = useState<IGenres[]>([]);
-
-    useEffect(() => {
-        getGenres()
-            .then(res => setGenres(res.genres) );
-    }, []);
-
-    const getGenresNames = (genres_id: string[]): string[] => {
-        const genresNames = genres_id.map(id => {
-            return genres.filter(item => item.id === +id)[0].name
-        })
-        return genresNames
-    }
+export default function MovieList ({films, genresDict}: {films: IMovieModel[] | IMovieDetailsModel[], genresDict: IMovieGenresDict}) {
 
     return (
         <div className={style.main}>
@@ -29,7 +15,7 @@ export default function MovieList ({films}: {films: IMovieModel[]}) {
             return (
                 <MovieCard 
                     film={film}
-                    genres={getGenresNames(film.genre_ids)}
+                    genres={genresDict[film.id]}
                     key={film.id} 
                     size={CardSize.small}
                 />
