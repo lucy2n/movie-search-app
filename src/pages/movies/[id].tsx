@@ -27,7 +27,7 @@ const MovieDescriptionSection = (): JSX.Element | null => {
 
     return (
         loading ?
-        <Loader size="xl" /> :
+        <Loader className={style.loader} size="xl" /> :
         film &&
         <div className={style.main}>
             <MovieBreadCrumbs name={film.original_title} />

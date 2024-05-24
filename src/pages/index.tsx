@@ -73,7 +73,7 @@ const Movies = (): JSX.Element => {
             </Group>
             {
                 loading ? 
-                <Loader size="xl" /> :
+                <Loader className={style.loader} size="xl" /> :
                 <>
                     <MovieList films={films} genresDict={setupupGenresDict()}/>
                     <Pagination

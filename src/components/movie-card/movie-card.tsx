@@ -99,7 +99,7 @@ export const MovieCard = ({film, genres, size} : IMovieCardProps): JSX.Element =
                                 <Rating size="lg" count={1} defaultValue={1} />
                                 <Text size="s" fw={600} c="dark">{Math.round(+film.vote_average * 10) / 10}</Text>
                             </Group>
-                            <Text c="gray" size="s" fw={500}>{film.vote_count}</Text>
+                            <Text c="gray" size="s" fw={500}>{`(${parseFloat((+film.vote_count / 1000).toFixed(1))}K)`}</Text>
                         </Group>
                     </Group>
                     <div className={style.desc}>

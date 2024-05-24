@@ -11,6 +11,12 @@
     margin-bottom: 50px;
 }
 
+.loader {
+    position: fixed;
+    top: 50vh;
+    right: 50%
+}
+
 @media screen and (max-width: 910px) {
     .main {
         align-items: center;

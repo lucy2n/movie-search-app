@@ -21,3 +21,9 @@
 .pagination {
    margin-bottom: 50px;
 }
+
+.loader {
+    position: fixed;
+    top: 50vh;
+    right: 50%
+}

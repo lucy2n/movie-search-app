@@ -14,3 +14,9 @@
     flex-wrap: wrap;
 }
 
+.loader {
+    position: fixed;
+    top: 50vh;
+    right: 50%
+}
+

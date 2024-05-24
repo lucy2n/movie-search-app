@@ -76,7 +76,7 @@ const RatedMovies = (): JSX.Element => {
               </form>
             </RatedFormProvider>
             { loading ?
-              <Loader size="xl" /> :
+              <Loader className={style.loader} size="xl" /> :
               <>
                 <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())} />
                 <Pagination
