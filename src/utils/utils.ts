@@ -1,4 +1,4 @@
-import { MovieFilters } from "./api";
+import { MovieFilters } from "../types/movie";
 import { base_url } from "./constants";
 
 export function getImageUrl (path: string, size: string = 'original'): string {
@@ -47,5 +47,3 @@ const getSortTypeParam = (sortType: string): string => {
             return 'popularity.desc'
     }
 }
-
-//const mapMovieData = (movieData)

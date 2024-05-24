@@ -1,4 +1,4 @@
-import { IGenresResponse, IMovieDetailsModel, IMovieModel, IMovieResponse } from "@/types/movie";
+import { IGenresResponse, IMovieDetailsModel, IMovieResponse, IVideoResponse, MovieFilters } from "@/types/movie";
 import { base_url } from "./constants";
 import { getMoviesUrl } from "./utils";
 
@@ -33,22 +33,4 @@ export const getGenres = async (): Promise<IGenresResponse> => {
 export const getVideo = async (id: string | number): Promise<IVideoResponse> => {
 	const res = await fetch(`${base_url}/movie/${id}/videos`, options)
 	return checkResponse(res);
-}
-
-export interface MovieFilters {
-	genres?: string[];
-	year?: string;
-	ratingFrom?: string;
-	ratingTo?: string;
-	sortType?: string;
-	page?: string;
-}
-
-export interface IVideoResponse {
-	results: IVideoModel[]
-}
-
-export interface IVideoModel {
-	key: string;
-	name: string
 }

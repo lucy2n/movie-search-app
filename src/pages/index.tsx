@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { InputsPanel } from "../components/inputs-panel/inputs-panel";
 import { MovieList, IMovieGenresDict } from "../components/movie-list/movie-list";
 import style from './movies.module.css'
-import { IMovieModel } from "@/types/movie";
-import { getGenres, getMovies, MovieFilters } from "@/utils/api";
-import { IGenres } from "@/components/genres-input/type";
+import { IMovieModel, MovieFilters } from "@/types/movie";
+import { getGenres, getMovies } from "@/utils/api";
+import { IGenres } from "@/types/movie";
 
 const Movies = (): JSX.Element => {
     const [films, setFilms] = useState<IMovieModel[]>([]);

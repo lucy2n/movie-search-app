@@ -2,8 +2,8 @@ import { Paper, Title, Divider, Text, Group, Image } from "@mantine/core";
 import style from './about-movie.module.css'
 import { getImageUrl } from "../../utils/utils";
 import { useEffect, useState } from "react";
-import { getVideo, IVideoModel } from "@/utils/api";
-import { IMovieDetailsModel } from "@/types/movie";
+import { getVideo } from "@/utils/api";
+import { IMovieDetailsModel, IVideoModel } from "@/types/movie";
 
 export const AboutMovie = ({ film }: { film: IMovieDetailsModel }): JSX.Element => {
 
@@ -17,13 +17,13 @@ export const AboutMovie = ({ film }: { film: IMovieDetailsModel }): JSX.Element 
     });
 
     return (
-            <Paper
+        <Paper
             className={style.main}
             shadow="xs" 
             p="l" 
             radius="20px"
         >
-            {film.video ? (
+            { film.video && 
                 <div className={style.unit}>
                     <Title order={3}>
                         Trailer
@@ -35,8 +35,8 @@ export const AboutMovie = ({ film }: { film: IMovieDetailsModel }): JSX.Element 
                         allowFullScreen
                         title="Embedded youtube" />
                     <Divider my="md" />
-                </div>   
-            ) : <></>}
+                </div>
+            }
             <div className={style.unit}>
                 <Title order={3}>
                     Description

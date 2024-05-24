@@ -1,5 +1,3 @@
-import { IGenres } from "@/components/genres-input/type";
-
 export interface IMovieModel {
     id: string;
     original_title: string;
@@ -40,6 +38,29 @@ export interface IMovieResponse {
     total_pages: number;
 }
 
+export interface IGenres {
+    id: number, 
+    name: string
+}
+
 export interface IGenresResponse {
     genres: IGenres[];
+}
+
+export interface MovieFilters {
+	genres: string[];
+	year: string;
+	ratingFrom: string;
+	ratingTo: string;
+	sortType: string;
+	page?: string;
+}
+
+export interface IVideoResponse {
+	results: IVideoModel[]
+}
+
+export interface IVideoModel {
+	key: string;
+	name: string
 }
