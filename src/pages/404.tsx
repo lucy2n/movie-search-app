@@ -4,7 +4,7 @@ import image from '../assets/images/404.svg'
 import style from './404.module.css'
 import Link from "next/link";
 
-export const Custom404 = (): JSX.Element => {
+const Custom404 = (): JSX.Element => {
     return (
         <Container className={style.container}>
             <div className={style.main}>
@@ -25,3 +25,5 @@ export const Custom404 = (): JSX.Element => {
         </Container>
     )
 }
+
+export default Custom404;

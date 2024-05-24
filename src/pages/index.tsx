@@ -7,7 +7,7 @@ import { IMovieModel } from "@/types/movie";
 import { getGenres, getMovies, MovieFilters } from "@/utils/api";
 import { IGenres } from "@/components/genres-input/type";
 
-export const Movies = (): JSX.Element => {
+const Movies = (): JSX.Element => {
     const [films, setFilms] = useState<IMovieModel[]>([]);
     const [filters, setFilters] = useState<MovieFilters>();
     const [page, setPage] = useState<number>(1);
@@ -79,3 +79,5 @@ export const Movies = (): JSX.Element => {
         </Group>
     )
 }
+
+export default Movies;

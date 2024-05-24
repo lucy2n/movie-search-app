@@ -8,7 +8,7 @@ import { MovieBreadCrumbs } from "@/components/bread-crumbs/bread-crumbs";
 import style from './movie-id.module.css'
 import { IMovieDetailsModel } from "@/types/movie";
 
-export const MovieDescriptionSection = (): JSX.Element | null => {
+const MovieDescriptionSection = (): JSX.Element | null => {
 
     const router = useRouter();
     const { id } = router.query;
@@ -35,3 +35,5 @@ export const MovieDescriptionSection = (): JSX.Element | null => {
         </div>
     )
 }
+
+export default MovieDescriptionSection;
