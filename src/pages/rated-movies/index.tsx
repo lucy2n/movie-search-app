@@ -5,7 +5,7 @@ import { MovieList, IMovieGenresDict } from '@/components/movie-list/movie-list'
 import { IMovieDetailsModel } from '@/types/movie';
 import { NoRatedMovies } from '@/components/no-rated/no-rated';
 import { NameInput } from '@/components/name-input/name-input';
-import { RatedFormProvider, useRatedForm } from './rated-form-context';
+import { RatedFormProvider, useRatedForm } from '../../utils/rated-form-context';
 import style from './rated-movies.module.css';
 
 const RatedMovies = (): JSX.Element => {
