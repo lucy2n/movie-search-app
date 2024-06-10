@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import { Image, Text } from "@mantine/core";
 import style from './no-movies.module.css';
-import image from '../../assets/images/search.svg'
+import image from '../../assets/images/search.png'
 
 export const NoMovies = (): JSX.Element => {
     return (

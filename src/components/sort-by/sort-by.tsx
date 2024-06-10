@@ -27,6 +27,7 @@ export const SortBy = (): JSX.Element => {
         withinPortal={false}
         onOptionSubmit={(val) => {
           setValue(val);
+          form.setFieldValue('sortType', val);
           combobox.closeDropdown();
         }}
       >

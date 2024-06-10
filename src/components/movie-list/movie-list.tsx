@@ -11,7 +11,7 @@ export interface IMovieGenresDict {
 export const MovieList = ({films, genresDict}: {films: IMovieModel[] | IMovieDetailsModel[], genresDict: IMovieGenresDict}): JSX.Element => {
     return (
         <div className={style.main}>
-        {films ? films.map((film) => {
+        {films.length > 0 ? films.map((film) => {
             return (
                 <MovieCard 
                     film={film}
