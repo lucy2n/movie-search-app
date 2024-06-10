@@ -1,9 +1,9 @@
 import { ComboboxItem, Select } from "@mantine/core";
-import style from './raiting-input.module.css'
+import style from './rating-input.module.css'
 import { useState } from "react";
 import { useFiltersFormContext } from "../inputs-panel/form-context";
 
-export const RaitingInput = (): JSX.Element => {
+export const RatingInput = (): JSX.Element => {
 
     const raiting = Array.from({length: 10}, (_, i) => i + 1 + '');
     const [bottomValue, setBottomValue] = useState<string>('');
@@ -27,7 +27,7 @@ export const RaitingInput = (): JSX.Element => {
             {...form.getInputProps('raitingBottom')}
             radius='md'
             className={`${style.input} ${style.input_type_raiting}`}
-            label="Raiting"
+            label="Rating"
             placeholder="Form"
             value={bottomValue ? bottomValue : null}
             onChange={handleChangeBottom}

@@ -7,7 +7,7 @@ import { AboutMovie } from "../../components/about-movie/about-movie";
 import { MovieBreadCrumbs } from "@/components/bread-crumbs/bread-crumbs";
 import style from './movie-id.module.css'
 import { IMovieDetailsModel } from "@/types/movie";
-import { Loader } from "@mantine/core";
+import { LoadingOverlay } from "@mantine/core";
 
 const MovieDescriptionSection = (): JSX.Element | null => {
 
@@ -27,7 +27,7 @@ const MovieDescriptionSection = (): JSX.Element | null => {
 
     return (
         loading ?
-        <Loader className={style.loader} size="xl" /> :
+        <LoadingOverlay className={style.loader} /> :
         film &&
         <div className={style.main}>
             <MovieBreadCrumbs name={film.original_title} />

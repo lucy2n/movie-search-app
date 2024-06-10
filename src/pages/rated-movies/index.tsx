@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Loader, Pagination, Title } from '@mantine/core';
+import { LoadingOverlay, Pagination, Title } from '@mantine/core';
 import { getFilmInformation } from '@/utils/api';
 import { MovieList, IMovieGenresDict } from '@/components/movie-list/movie-list';
 import { IMovieDetailsModel } from '@/types/movie';
@@ -76,7 +76,7 @@ const RatedMovies = (): JSX.Element => {
               </form>
             </RatedFormProvider>
             { loading ?
-              <Loader className={style.loader} size="xl" /> :
+              <LoadingOverlay className={style.loader} /> :
               <>
                 <MovieList films={filteredRatedMovies()} genresDict={setupupGenresDict(filteredRatedMovies())} />
                 <Pagination

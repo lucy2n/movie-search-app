@@ -1,7 +1,7 @@
 import { Button } from '@mantine/core';
 import style from './inputs-panel.module.css'
 import { YearInput } from '../year-input/year-input';
-import { RaitingInput } from '../raiting-input/raiting-input';
+import { RatingInput } from '../rating-input/rating-input';
 import { SortBy } from '../sort-by/sort-by';
 import { FiltersFormProvider, useFiltersForm } from './form-context';
 import { useEffect } from 'react';
@@ -44,7 +44,7 @@ export const InputsPanel = ({ fetchMovies }: { fetchMovies: (filters: MovieFilte
       <form className={style.panel}>
           <GenresInput/>
           <YearInput/>
-          <RaitingInput/>
+          <RatingInput/>
           <Button variant="transparent" color="gray" onClick={() => { resetForm() }}>Reset filters</Button>
           <SortBy/>
       </form>
